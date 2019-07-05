@@ -3,6 +3,7 @@ package com.ihsinformatics.aahung.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Deprecated
 public class Repo {
     @SerializedName("id")
     @Expose

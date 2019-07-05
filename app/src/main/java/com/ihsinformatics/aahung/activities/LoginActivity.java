@@ -1,32 +1,38 @@
 package com.ihsinformatics.aahung.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
-import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.view.View;
 
 import com.ihsinformatics.aahung.App;
 import com.ihsinformatics.aahung.R;
-import com.ihsinformatics.aahung.fragments.form.FormContract;
+import com.ihsinformatics.aahung.databinding.ActivityLoginBinding;
 import com.ihsinformatics.aahung.fragments.login.LoginContract;
 import com.ihsinformatics.aahung.network.ApiService;
-import com.ihsinformatics.aahung.views.FormBuilder;
 
 import javax.inject.Inject;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity implements FormContract.View {
+public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
     @Inject
-    FormContract.Presenter presenter;
+    SharedPreferences preferences;
 
     @Inject
-    FormBuilder formBuilder;
+    ApiService apiService;
+
+    @Inject
+    LoginContract.Presenter presenter;
+
+
+    ActivityLoginBinding binding;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -36,15 +42,22 @@ public class MainActivity extends AppCompatActivity implements FormContract.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_form);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         ((App) getApplication()).getComponent().inject(this);
         presenter.takeView(this);
-        setupForm((LinearLayout) findViewById(R.id.baselayout));
     }
 
-    private void setupForm(LinearLayout baselayout) {
-        FormBuilder formBuilder = new FormBuilder(MainActivity.this,baselayout);
-        formBuilder.build();
+    @Override
+    public void showToast(String Message) {
+
     }
 
+    public void onLoginButtonClicked(View view) {
+        presenter.login(binding.username.getText().toString(), binding.password.getText().toString());
+    }
+
+    @Override
+    public void startMainActivity() {
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+    }
 }

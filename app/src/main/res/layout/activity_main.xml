@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
 
-    <com.google.android.material.appbar.AppBarLayout
+   <include layout="@layout/app_bar" />
+    <TableLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+    <androidx.viewpager2.widget.ViewPager2
 
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            android:gravity="center"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <ImageView
-                style="@style/Base.TextAppearance.AppCompat.Large"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logo"
-                android:textAllCaps="true"
-                android:textColor="@color/white" />
-        </androidx.appcompat.widget.Toolbar>
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    </com.google.android.material.appbar.AppBarLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.viewpager2.widget.ViewPager2>
+
+
+
+</LinearLayout>
+

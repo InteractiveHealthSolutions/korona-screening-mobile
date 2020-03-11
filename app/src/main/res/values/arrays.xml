@@ -5,4 +5,10 @@
         <item >female</item>
         <item >other</item>
      </string-array>
+    <string-array name="languague">
+        <item >English</item>
+        <item >اردو</item>
+        <item >سنڌي</item>
+
+    </string-array>
 </resources>

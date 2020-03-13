@@ -114,7 +114,7 @@
                     android:id="@+id/layout_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp"
                     android:orientation="vertical" />
                 <LinearLayout
                     android:id="@+id/layout_contact_root"
@@ -160,7 +160,7 @@
                             android:paddingTop="@dimen/_4sdp"
                             android:paddingRight="@dimen/_20sdp"
                             android:paddingBottom="@dimen/_4sdp"
-                            android:text="Instruction"
+                            android:text="@string/instruction"
                             android:textStyle="bold"
                             android:drawablePadding="@dimen/_8sdp"
                             android:includeFontPadding="true"

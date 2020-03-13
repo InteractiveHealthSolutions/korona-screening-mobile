@@ -37,4 +37,11 @@
 
     <string name="other_contacts">-----  Or you can contact any of the given helplines anytime  -----</string>
 
+    <string name="wash_hands">Wash your hands often with soap and water for at least 20 seconds especially after you have been in a public place, or after blowing your nose, coughing, or sneezing.</string>
+    <string name="close_contact">Avoid close contact with people who are sick</string>
+    <string name="use_facemask">If you are sick:  You should wear a facemask when you are around other people (e.g., sharing a room or vehicle) and before you enter a healthcare provider’s office.</string>
+
+    <string name="precaution_taken">Precautions to be taken</string>
+
+
 </resources>

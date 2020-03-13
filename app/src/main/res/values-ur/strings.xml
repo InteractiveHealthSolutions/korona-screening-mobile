@@ -39,4 +39,10 @@
 
     <string name="other_contacts">-----  اور آپ مندرجہ ذیل کسی بھی نمبر پر رابطہ کر سکتے ہیں  -----</string>
 
+    <string name="wash_hands">کم سے کم 20 سیکنڈ تک اپنے ہاتھوں کو صابن اور پانی سے دھوئے ، خاص طور پر آپ عوامی مقام پر رہنے کے بعد ، کھانسی ، یا چھینکنے کے بعد۔</string>
+    <string name="close_contact">بیمار لوگوں سے رابطہ نہ کریں</string>
+    <string name="use_facemask">گر آپ بیمار ہیں تو لوگوں سے ملنے سے اجتناب کریں اور ماسک کا استعمال کریں۔</string>
+
+    <string name="precaution_taken">احتياطی تدابیر</string>
+
 </resources>

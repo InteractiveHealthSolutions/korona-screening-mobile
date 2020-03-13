@@ -42,4 +42,10 @@
 
     <string name="other_contacts">-----  ٻيو توھان ھيٺين ڪنھن به نمبر تي رابطو ڪري تا سڳيو  -----</string>
 
+    <string name="wash_hands">گهٽ ۾ گهٽ ۲۰ سيڪنڊن لاء هٿ پاڻي ۽ صابڻ سان ڌوئو، خاص طور تي عوامي جاء تي ھئڻ کان پوءِ، کنگھڻ يا ڇڪ کانپوء.</string>
+    <string name="close_contact">بيمار ماڻهن سان رابطو نه ڪيو.</string>
+    <string name="use_facemask">جيڪڏھن توھان بيمار آھيو ته ماڻھن سان نه ملو ۽ مسڪ جو استعمال ڪريو.</string>
+
+    <string name="precaution_taken">احتياطی تدابیر</string>
+
 </resources>

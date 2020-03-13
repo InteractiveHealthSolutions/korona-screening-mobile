@@ -3,15 +3,15 @@
     <string name="app_name">COVID App</string>
 
     <string name="go">آگے</string>
-    <string name="sec_1_question_1">کیا آپ نے گذشتہ 14 دنوں میں مینلینڈ چین / ایران / جنوبی کوریا / اٹلی / COVID-19 انفیکشن کے دوسرے زیادہ بوجھ والے ملک سے سفر کیا ہے؟</string>
-    <string name="sec_1_question_2" ></string>
-    <string name="sec_1_question_3" ></string>
-    <string name="sec_1_question_4" ></string>
-    <string name="sec_2_question_1" ></string>
-    <string name="sec_3_question_1" ></string>
-    <string name="sec_3_question_2" ></string>
-    <string name="sec_3_question_3" ></string>
-    <string name="sec_3_question_4" ></string>
+    <string name="sec_1_question_1">کیا آپ نے گزشتہ دو ہفتوں میں چین، ایران، جنوبی کوریا، اٹلی یا کورونا وائرس سے متاثرہ کسی اور ملک کا سفر کیا ہے؟</string>
+    <string name="sec_1_question_2" >کیا آپ کا کسی ایسے فرد کے ساتھ میل جول (مثلاً ہاتھ ملانا، ساتھ کھانا، وغیرہ) ہوا ہے جس نے گزشتہ دو ہفتوں میں چین، ایران، جنوبی کوریا، اٹلی یا کورونا وائرس سے متاثرہ کسی اور ملک کا سفر کیا ہے؟</string>
+    <string name="sec_1_question_3" >کیا گزشتہ دو ہفتوں میں آپ کا کسی ایسے فرد کے ساتھ میل جول (مثلاً ہاتھ ملانا، ساتھ کھانا، وغیرہ) ہوا ہے جسے کرونا وائرس سے متاثر ہونے کی تصدیق یا شبہ ہو چکا ہو؟</string>
+    <string name="sec_1_question_4" >کیا گزشتہ دو ہفتوں میں آپ نے کسی ایسے فرد کے ساتھ  رہائش اختیار کی جسے کرونا وائرس سے متاثر ہونے کی تصدیق یا شبہ ہو چکا ہو؟</string>
+    <string name="sec_2_question_1" >کیا آپ کو بخار ہے؟</string>
+    <string name="sec_3_question_1" >کیا آپ کو کھانسی ہے؟</string>
+    <string name="sec_3_question_2" >کیا اپ کو زکام ہے؟</string>
+    <string name="sec_3_question_3" >کیا آپ کا گلا خراب ہے؟</string>
+    <string name="sec_3_question_4" >کیا آپ کو سانس لینے میں تکلیف ہے؟</string>
     <string name="yes">جی ہاں</string>
     <string name="no">نہیں</string>
     <string name="question">سوال</string>

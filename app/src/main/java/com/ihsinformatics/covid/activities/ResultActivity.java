@@ -1,6 +1,7 @@
 package com.ihsinformatics.covid.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Context;
@@ -10,6 +11,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.ihsinformatics.covid.App;
@@ -59,13 +62,15 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
 
     @Override
     public void setColor(int resId) {
-        binding.score.setTextColor(resId);
-        binding.status.setTextColor(resId);
+
+        binding.score.setTextColor(getResources().getColor(resId));
+        binding.status.setTextColor(getResources().getColor(resId));
     }
 
     @Override
     public void showLocations(List<Location> locations) {
 
+        int margin = getResources().getDimensionPixelOffset(R.dimen.margin_small);
 
         for (Location location : locations) {
             ItemHospitalBinding itemBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.item_hospital, null, false);
@@ -74,7 +79,13 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
             itemBinding.location.setTag(location.getAddress());
             itemBinding.call.setOnClickListener(new CallListener());
             itemBinding.location.setOnClickListener(new AddressListener());
+            CardView root = (CardView)  itemBinding.getRoot();
+            LinearLayout.LayoutParams cardViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            cardViewParams.setMargins(0, margin, 0, margin);
+            root.setLayoutParams(cardViewParams);
+            root.requestLayout();
             binding.layoutDetails.addView(itemBinding.getRoot());
+
         }
 
     }
@@ -82,11 +93,20 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
     @Override
     public void showContact(List<String> contacts) {
 
+        int margin = getResources().getDimensionPixelOffset(R.dimen.margin_small);
+
         for (String contact : contacts) {
             ItemCallBinding itemBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.item_call, null, false);
             itemBinding.number.setText(contact);
             itemBinding.getRoot().setTag(contact);
             itemBinding.getRoot().setOnClickListener(new CallListener());
+
+            CardView root = (CardView)  itemBinding.getRoot();
+            LinearLayout.LayoutParams cardViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            cardViewParams.setMargins(margin, 0, margin, 0);
+            root.setLayoutParams(cardViewParams);
+            root.requestLayout();
+
             binding.layoutContacts.addView(itemBinding.getRoot());
         }
     }
@@ -132,7 +152,7 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
     private class InstructionListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(ResultActivity.this,InstructionActivity.class));
+            startActivity(new Intent(ResultActivity.this, InstructionActivity.class));
         }
     }
 }

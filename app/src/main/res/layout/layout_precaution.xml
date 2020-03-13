@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_50sdp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="@dimen/_20sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Precautions to be taken"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_large" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wash your hands often with soap and water for at least 20 seconds especially after you have been in a public place, or after blowing your nose, coughing, or sneezing."
+            android:drawableLeft="@drawable/ic_wash_hands"
+            android:drawablePadding="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center_vertical"
+             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Avoid close contact with people who are sick"
+            android:drawableLeft="@drawable/ic_no_contact"
+            android:drawablePadding="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="If you are sick:  You should wear a facemask when you are around other people (e.g., sharing a room or vehicle) and before you enter a healthcare provider’s office."
+            android:drawableLeft="@drawable/ic_mask"
+            android:drawablePadding="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

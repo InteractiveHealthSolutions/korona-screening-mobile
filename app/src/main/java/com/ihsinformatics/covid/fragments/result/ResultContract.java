@@ -16,11 +16,17 @@ public interface ResultContract {
 
         String getStringResource(int resId);
 
-        void setScoreColor(int resId);
+        void setColor(int resId);
 
         void showLocations(List<Location> locations);
 
         void showContact(List<String> contacts);
+
+        void setStatus(int resId);
+
+        void showPrecautions();
+
+        void showHighRiskDetails();
     }
 
 

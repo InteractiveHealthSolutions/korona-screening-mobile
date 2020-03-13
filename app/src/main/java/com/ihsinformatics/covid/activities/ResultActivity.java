@@ -24,7 +24,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class ResultActivity extends AppCompatActivity implements ResultContract.View {
+public class ResultActivity extends BaseActivity implements ResultContract.View {
 
     ActivityResultBinding binding;
 
@@ -58,8 +58,9 @@ public class ResultActivity extends AppCompatActivity implements ResultContract.
     }
 
     @Override
-    public void setScoreColor(int resId) {
+    public void setColor(int resId) {
         binding.score.setTextColor(resId);
+        binding.status.setTextColor(resId);
     }
 
     @Override
@@ -90,6 +91,24 @@ public class ResultActivity extends AppCompatActivity implements ResultContract.
         }
     }
 
+    @Override
+    public void setStatus(int resId) {
+        binding.status.setText(getString(resId));
+    }
+
+    @Override
+    public void showPrecautions() {
+        binding.precaution.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showHighRiskDetails() {
+        binding.layoutContactRoot.setVisibility(View.VISIBLE);
+        binding.instruction.setVisibility(View.VISIBLE);
+        binding.instruction.setOnClickListener(new InstructionListener());
+        binding.layoutDetails.setVisibility(View.VISIBLE);
+    }
+
 
     private class CallListener implements View.OnClickListener {
         @Override
@@ -107,6 +126,13 @@ public class ResultActivity extends AppCompatActivity implements ResultContract.
             String coordinates = view.getTag().toString();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + coordinates + "?q=" + coordinates + "(Hospital)"));
             startActivity(intent);
+        }
+    }
+
+    private class InstructionListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            startActivity(new Intent(ResultActivity.this,InstructionActivity.class));
         }
     }
 }

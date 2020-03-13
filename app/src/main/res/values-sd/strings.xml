@@ -24,6 +24,14 @@
     <string name="your_score">Your Score</string>
     <string name="score_detail">Your score is %d you have a chance for development of COVID -19. Further, you need medical assistance, please visit the following designated hospitals for further medical workup.</string>
     <string name="no_indication">There are no indication that you are currently infected by</string>
+    <string name="no_chance">No Chance for development of COVID-19</string>
+    <string name="low_probability">Low probability  of COVID-19</string>
+    <string name="high_probability">Moderate to High probability of  COVID -19</string>
+    <string name="instruction">Instructions</string>
+    <string name="isolate_yourself">Isolate yourself in a separate room of your home and limit your movement there</string>
+    <string name="avoid_close_contact">Keep items of your personal use separate from other family members</string>
+    <string name="use_masked">Use mask 24 hours and change it when it becomes soaked or dirty</string>
+    <string name="wash_hands">Wash your hands with water and soap regularly for at least 20 seconds</string>
 
 
 </resources>

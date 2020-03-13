@@ -7,8 +7,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:cardCornerRadius="@dimen/_40sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:clipToPadding="true"
+       android:layout_margin="@dimen/_5sdp"
+
         app:contentPadding="@dimen/_3sdp">
 
         <LinearLayout

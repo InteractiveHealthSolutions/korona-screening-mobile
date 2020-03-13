@@ -14,10 +14,10 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "SERVER_URL", '"http://199.172.1.227:8019/api/"'
+            buildConfigField "String", "SERVER_URL", '"https://covid19test.ihsinformatics.com/coronavirus/api/"'
         }
-        release{
-            buildConfigField "String", "SERVER_URL", '"http://199.172.1.227:8019/api/"'
+        release {
+            buildConfigField "String", "SERVER_URL", '"https://covid19.ihsinformatics.com/coronavirus/api/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-
+        android:background="@drawable/bg_main"
         android:padding="30dp"
         tools:context=".activities.LoginActivity">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_main_logo"
+            android:layout_above="@id/logo_text"
+            />
+
         <LinearLayout
+           android:id="@+id/logo_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_above="@+id/form_login"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
                 android:text="COVID-19"
                 android:textAllCaps="true"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 android:textSize="33sp"
                 android:textStyle="bold" />
 
@@ -32,57 +38,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Assessment Tool"
-                android:textAllCaps="true"
-                android:textColor="@color/colorAccent"
+                android:text="Risk Assessment Tool"
+                android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Lorem ipsum detail sasdjalskd asd as dasd asd"
-                android:textAllCaps="true"
-                android:textColor="@color/colorAccent"
-                android:textSize="12sp"
-                />
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:id="@+id/form_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            android:visibility="invisible">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/username"
-                android:drawablePadding="7dp"
-                android:hint="username"
-                android:inputType="text" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/password"
-                android:drawablePadding="7dp"
-                android:hint="password"
-                android:inputType="textPassword" />
-
-
+                 />
 
 
         </LinearLayout>
+
+
+
 
 
         <LinearLayout
@@ -92,8 +57,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:gravity="end"
-            android:layout_below="@+id/form_login"
+            android:layout_below="@id/logo_text"
+
             android:orientation="vertical">
 
 
@@ -110,39 +75,66 @@
                 android:padding="8dp"
                 app:selectedColor="@color/colorAccent"
                 app:selectedTab="0"
-                app:strokeRadius="5dp"
+                app:strokeRadius="20dp"
                 app:strokeWidth="1dp"
                 app:switchTabs="@array/languague"
                 app:textSize="14sp" />
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_info"
+            android:gravity="center"
+            android:layout_above="@id/login_button"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+           >
+
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/agreed"
+            android:layout_width="329dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:text="@string/agreed_with_the_terms_and_condition"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            android:layout_below="@+id/info"
+            android:gravity="center"
+            />
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
             fontPath="fonts/Monserrat-Bold.otf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_language"
+            android:layout_above="@+id/copyright"
             android:layout_marginTop="50dp"
-            android:background="@drawable/button_bg"
             android:onClick="onLoginButtonClicked"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="20dp"
 
             android:text="@string/go"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/login_button"
-            android:gravity="center"
-            android:padding="20dp"
-            android:text="Forget Password ?"
-            android:visibility="invisible" />
+
 
         <LinearLayout
-
+            android:id="@+id/copyright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -150,9 +142,10 @@
             android:orientation="horizontal">
 
             <TextView
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColorHighlight="@color/white"
                 android:text=" | Copyrights 2020  |  " />
 
             <TextView
@@ -160,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="COVID-19"
+                android:text="IHS"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
 

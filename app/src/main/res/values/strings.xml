@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">COVID App</string>
-    <string name="go">Continue</string>
+    <string name="go">Begin Assessment</string>
+    <string name="sec_1_question_1">Have you travelled from Mainland China/Iran/South Korea/ Italy / other high burden country of COVID-19 infection in the last 14 days?</string>
+    <string name="sec_1_question_2">Have you had close contact with any person , who has returned from Mainland China/Iran/South Korea/ Italy / other high burden country of COVID-19 infection in the last 14 days?</string>
+    <string name="sec_1_question_3">Have you had close contact with a probable or confirmed case of COVID-19 in the last 14 days?</string>
+    <string name="sec_1_question_4">Are you currently living with a probable or confirmed case of Corona since the last 14 days?</string>
+    <string name="sec_2_question_1">Do you have a fever?</string>
+    <string name="sec_3_question_1">Do you have a cough?</string>
+    <string name="sec_3_question_2">Do you have a cold?</string>
+    <string name="sec_3_question_3">Do you have a sore throat?</string>
+    <string name="sec_3_question_4">Do you have a shortness of breath?</string>
+    <string name="yes">Yes, I have</string>
+    <string name="no">No, have not</string>
+    <string name="question">Question</string>
+    <string name="section">Section</string>
+    <string name="login_info">There will be a set of questions which we would like you to answer. Do you want to continue?</string>
+    <string name="agreed_with_the_terms_and_condition">Agreed with the Terms and condition</string>
+    <string name="your_score">Your Risk Score</string>
+    <string name="score_detail">Your Risk score is %d you have a chance for development of COVID -19. Further, you need medical assistance, please visit the following designated hospitals for further medical workup.</string>
+    <string name="no_indication">There are no indication that you are currently infected by COVID-19</string>
+
 </resources>

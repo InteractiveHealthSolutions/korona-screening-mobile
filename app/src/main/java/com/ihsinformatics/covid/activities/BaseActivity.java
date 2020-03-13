@@ -29,7 +29,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context base) {
         ((App) base.getApplicationContext()).getComponent().inject(this);
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(updateBaseContextLocale(base)));
+        super.attachBaseContext(updateBaseContextLocale(base));
     }
 
     private Context updateBaseContextLocale(Context base) {

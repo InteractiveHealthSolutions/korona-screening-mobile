@@ -7,6 +7,8 @@ import com.ihsinformatics.covid.fragments.form.FormContract;
 import com.ihsinformatics.covid.fragments.form.FormPresenterImpl;
 import com.ihsinformatics.covid.fragments.login.LoginContract;
 import com.ihsinformatics.covid.fragments.login.LoginPresenterImpl;
+import com.ihsinformatics.covid.fragments.result.ResultContract;
+import com.ihsinformatics.covid.fragments.result.ResultPresenterImpl;
 import com.ihsinformatics.covid.network.ApiService;
 
 import dagger.Module;
@@ -23,5 +25,10 @@ public class PresenterModule {
     @Provides
     public FormContract.Presenter providesFormPresenter( final ApiService apiService) {
         return new FormPresenterImpl(apiService);
+    }
+
+    @Provides
+    public ResultContract.Presenter providesResultPresenter( ) {
+        return new ResultPresenterImpl();
     }
 }

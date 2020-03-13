@@ -13,7 +13,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        release {
+        debug {
+            buildConfigField "String", "SERVER_URL", '"http://199.172.1.227:8019/api/"'
+        }
+        release{
+            buildConfigField "String", "SERVER_URL", '"http://199.172.1.227:8019/api/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -36,10 +40,12 @@ dependencies {
     implementation "com.google.dagger:dagger:$daggerLibraryVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitLibraryVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitLibraryVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.0.1"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     implementation "androidx.room:room-runtime:2.1.0"
     implementation 'lib.kingja.switchbutton:switchbutton:1.1.8'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
 
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta01'

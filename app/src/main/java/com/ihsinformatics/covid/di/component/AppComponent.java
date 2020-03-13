@@ -4,6 +4,7 @@ import com.ihsinformatics.covid.App;
 import com.ihsinformatics.covid.activities.BaseActivity;
 import com.ihsinformatics.covid.activities.LoginActivity;
 import com.ihsinformatics.covid.activities.MainActivity;
+import com.ihsinformatics.covid.activities.ResultActivity;
 import com.ihsinformatics.covid.di.module.ApplicationModule;
 import com.ihsinformatics.covid.di.module.DatabaseModule;
 import com.ihsinformatics.covid.di.module.FormModule;
@@ -21,4 +22,6 @@ public interface AppComponent {
     void inject(LoginActivity target);
     void inject(MainActivity target);
     void inject(BaseActivity baseActivity);
+
+    void inject(ResultActivity resultActivity);
 }

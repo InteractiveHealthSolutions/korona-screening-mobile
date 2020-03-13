@@ -74,7 +74,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     public void onLoginButtonClicked(View view) {
-        presenter.login(binding.username.getText().toString(), binding.password.getText().toString());
+        if (binding.agreed.isChecked())
+            startMainActivity();
+        else
+            showToast("Please Accept the Term & conditions");
     }
 
     @Override

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1096691756029",
+    "firebase_url": "https://covid19-assessment.firebaseio.com",
+    "project_id": "covid19-assessment",
+    "storage_bucket": "covid19-assessment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096691756029:android:5ee441897256fffcaa0794",
+        "android_client_info": {
+          "package_name": "com.ihsinformatics.covid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096691756029-psvopu3aipdgcj5v2nusim3k0rsqr0jc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHVE-AUU-lTd9bVDWRU_WllZARMlnv8zM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096691756029-psvopu3aipdgcj5v2nusim3k0rsqr0jc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

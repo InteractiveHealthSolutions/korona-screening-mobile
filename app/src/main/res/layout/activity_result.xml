@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large"
+        tools:context=".activities.ResultActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_score"
+                android:textColor="@color/white"
+                android:textSize="33sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_ihs_logo" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/white" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/circular_shape_white" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="@dimen/_50sdp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_40sdp">
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="Low probability of COVID-19"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/result_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Some Details about Corona Virus"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_large" />
+
+                <LinearLayout
+                    android:id="@+id/layout_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="-----  Or you can contact any of the given helplines anytime  -----"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_contacts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_40sdp">
+
+                        <TextView
+                            android:id="@+id/instruction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_4sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_4sdp"
+                            android:text="Instruction ->"
+                            android:textStyle="bold" />
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</layout>

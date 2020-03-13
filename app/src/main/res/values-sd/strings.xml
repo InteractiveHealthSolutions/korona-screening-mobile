@@ -19,7 +19,7 @@
     <string name="no">نه</string>
     <string name="question">سوال</string>
     <string name="section">حصي</string>
-    <string name="login_info">کورونا وائرس جو جائزو وٺڻ لاء سوالن جو هڪ سيٽ هوندو. ڇا توهان جواب ڏيڻ پسند ڪندو؟</string>
+    <string name="login_info">توهان جي باري ۾ ڪابه ذاتي يا سڃاڻپ وارو ڊيٽا هن ايپ ۾ رڪارڊ ڪيو ويندو.</string>
     <string name="agreed_with_the_terms_and_condition">انهن شرطن ۽ حالت سان قبول ڪيو وڃي؟</string>
     <string name="your_score">نتیجو</string>
     <string name="score_detail">توھان جو نتيجو %d آھي ته ڪورونا وائرس جو امڪان آهي. وڌيڪ، توھان کي ميڊيڪل سھائتا جي ضرورت آھي، مھرباني ڪري ميڊيڪل چيڪپ ڪرآئڻ لاء ھیٺئین نامزد اسپتالن جو دورو ڪيو.</string>
@@ -42,10 +42,11 @@
 
     <string name="other_contacts">-----  ٻيو توھان ھيٺين ڪنھن به نمبر تي رابطو ڪري تا سڳيو  -----</string>
 
-    <string name="wash_hands">گهٽ ۾ گهٽ ۲۰ سيڪنڊن لاء هٿ پاڻي ۽ صابڻ سان ڌوئو، خاص طور تي عوامي جاء تي ھئڻ کان پوءِ، کنگھڻ يا ڇڪ کانپوء.</string>
+    <string name="wash_hands_instruction">گهٽ ۾ گهٽ ۲۰ سيڪنڊن لاء هٿ پاڻي ۽ صابڻ سان ڌوئو، خاص طور تي عوامي جاء تي ھئڻ کان پوءِ، کنگھڻ يا ڇڪ کانپوء.</string>
     <string name="close_contact">بيمار ماڻهن سان رابطو نه ڪيو.</string>
     <string name="use_facemask">جيڪڏھن توھان بيمار آھيو ته ماڻھن سان نه ملو ۽ مسڪ جو استعمال ڪريو.</string>
 
     <string name="precaution_taken">احتياطی تدابیر</string>
+    <string name="error_term_condition">مهرباني ڪري شرطون ۽ شرط قبول ڪريو</string>
 
 </resources>

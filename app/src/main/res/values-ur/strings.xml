@@ -16,7 +16,7 @@
     <string name="no">نہیں</string>
     <string name="question">سوال</string>
     <string name="section">سیکشن</string>
-    <string name="login_info">کرونا وایرس کی تشخیص کے لیے ہم آپ سے کچھ سوالات پوچھے گے۔ کیا آپ اگے بڑھنا چاہے گے؟</string>
+    <string name="login_info">اس ایپ میں آپ کے بارے میں کوئی ذاتی یا قابل شناخت ڈیٹا ریکارڈ نہیں کیا جائے گا۔</string>
     <string name="agreed_with_the_terms_and_condition">شرائط و ضوابط سے اتفاق ہے؟</string>
     <string name="your_score">نتیجہ</string>
     <string name="score_detail">آپ کا نتیجہ %d ہے آپ کو کورونہ وائرس ہونے کا امکان ہے۔ مزید، آپ کو طبی امداد کی ضرورت ہے۔ برائے مہربانی مندرجہ ذیل اسپتالوں کا دورہ کریں۔</string>
@@ -39,10 +39,11 @@
 
     <string name="other_contacts">-----  اور آپ مندرجہ ذیل کسی بھی نمبر پر رابطہ کر سکتے ہیں  -----</string>
 
-    <string name="wash_hands">کم سے کم 20 سیکنڈ تک اپنے ہاتھوں کو صابن اور پانی سے دھوئے ، خاص طور پر آپ عوامی مقام پر رہنے کے بعد ، کھانسی ، یا چھینکنے کے بعد۔</string>
+    <string name="wash_hands_instruction">کم سے کم 20 سیکنڈ تک اپنے ہاتھوں کو صابن اور پانی سے دھوئے ، خاص طور پر آپ عوامی مقام پر رہنے کے بعد ، کھانسی ، یا چھینکنے کے بعد۔</string>
     <string name="close_contact">بیمار لوگوں سے رابطہ نہ کریں</string>
     <string name="use_facemask">گر آپ بیمار ہیں تو لوگوں سے ملنے سے اجتناب کریں اور ماسک کا استعمال کریں۔</string>
 
     <string name="precaution_taken">احتياطی تدابیر</string>
+    <string name="error_term_condition">براہ کرم شرائط و ضوابط قبول کریں</string>
 
 </resources>

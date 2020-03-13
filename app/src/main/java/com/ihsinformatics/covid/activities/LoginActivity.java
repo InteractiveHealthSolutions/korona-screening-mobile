@@ -78,7 +78,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         if (binding.agreed.isChecked())
             startMainActivity();
         else
-            showToast("Please Accept the Term & conditions");
+            showToast(getString(R.string.error_term_condition));
     }
 
     @Override

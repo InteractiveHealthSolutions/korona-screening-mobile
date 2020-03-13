@@ -7,10 +7,7 @@
         android:layout_height="wrap_content"
         android:innerRadius="0dp"
         android:orientation="horizontal"
-        android:thicknessRatio="1.9"
-
-
-        app:cardCornerRadius="@dimen/_40sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
         app:cardElevation="0dp"
         app:contentPadding="@dimen/_3sdp">
 

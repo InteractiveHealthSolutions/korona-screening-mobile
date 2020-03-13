@@ -78,7 +78,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/wash_hands"
+            android:text="@string/wash_hands_instruction"
             android:drawableLeft="@drawable/ic_wash_hands"
             android:textColor="@color/white"
             android:drawablePadding="@dimen/_7sdp"

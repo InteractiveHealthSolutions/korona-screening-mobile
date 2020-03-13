@@ -45,7 +45,7 @@ public class OptionWidget extends Widget {
     }
 
     private void addButton(Option option) {
-        int padding = context.getResources().getDimensionPixelOffset(R.dimen.margin_normal_large);
+        int padding = context.getResources().getDimensionPixelOffset(R.dimen._10sdp);
         int margin = context.getResources().getDimensionPixelOffset(R.dimen.margin_small);
 
         MaterialButton radioButton = new MaterialButton(context);

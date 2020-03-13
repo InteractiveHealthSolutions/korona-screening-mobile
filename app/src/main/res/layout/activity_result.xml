@@ -160,7 +160,7 @@
                             android:paddingTop="@dimen/_4sdp"
                             android:paddingRight="@dimen/_10sdp"
                             android:paddingBottom="@dimen/_4sdp"
-                            android:text="Instruction"
+                            android:text="@string/instruction"
                             android:textStyle="bold" />
 
                     </androidx.cardview.widget.CardView>

@@ -27,5 +27,7 @@
     <string name="avoid_close_contact">Keep items of your personal use separate from other family members</string>
     <string name="use_masked">Use mask 24 hours and change it when it becomes soaked or dirty</string>
     <string name="wash_hands">Wash your hands with water and soap regularly for at least 20 seconds</string>
+    <string name="question_title_exposure">Exposure</string>
+    <string name="question_title_symptoms">Symptoms</string>
 
 </resources>

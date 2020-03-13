@@ -20,7 +20,7 @@
     <dimen name="textsize_small">10sp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
-    <dimen name="logo_dimen">@dimen/_204sdp</dimen>
+    <dimen name="logo_dimen">@dimen/_144sdp</dimen>
 
 
 </resources>

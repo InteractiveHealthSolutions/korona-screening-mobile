@@ -18,18 +18,25 @@
     <string name="section">سیکشن</string>
     <string name="login_info">کرونا وایرس کی تشخیص کے لیے ہم آپ سے کچھ سوالات پوچھے گے۔ کیا آپ اگے بڑھنا چاہے گے؟</string>
     <string name="agreed_with_the_terms_and_condition">شرائط و ضوابط سے اتفاق ہے؟</string>
-    <string name="your_score">Your Score</string>
-    <string name="score_detail">Your score is %d you have a chance for development of COVID -19. Further, you need medical assistance, please visit the following designated hospitals for further medical workup.</string>
-    <string name="no_indication">There are no indication that you are currently infected by</string>
-    <string name="no_chance">No Chance for development of COVID-19</string>
-    <string name="low_probability">Low probability  of COVID-19</string>
-    <string name="high_probability">Moderate to High probability of  COVID -19</string>
-    <string name="instruction">Instructions</string>
-    <string name="isolate_yourself">Isolate yourself in a separate room of your home and limit your movement there</string>
-    <string name="avoid_close_contact">Keep items of your personal use separate from other family members</string>
-    <string name="use_masked">Use mask 24 hours and change it when it becomes soaked or dirty</string>
-    <string name="wash_hands">Wash your hands with water and soap regularly for at least 20 seconds</string>
-    <string name="question_title_exposure">Exposure</string>
+    <string name="your_score">نتیجہ</string>
+    <string name="score_detail">آپ کا نتیجہ %d ہے آپ کو کورونہ وائرس ہونے کا امکان ہے۔ مزید، آپ کو طبی امداد کی ضرورت ہے۔ برائے مہربانی مندرجہ ذیل اسپتالوں کا دورہ کریں۔</string>
+    <string name="no_indication">آپ کو کورونا وائرس ہونے کا کوئی امکان نہیں ہے۔</string>
+    <string name="no_chance">آپ کورونا وائرس سے متاثر نہیں ہیں۔</string>
+    <string name="low_probability">کورونا وائرس سے متاثر ہونے کا امکان کم ہے</string>
+    <string name="high_probability">کورونا وائرس سے متاثر ہونے کا امکان ہے</string>
+    <string name="instruction">ہدایات</string>
+    <string name="isolate_yourself">گھر میں اپنا کمرہ علیحدہ کر لیں اور باہر نکلنے سے گریز کریں۔</string>
+    <string name="avoid_close_contact">اپنے استعمال کی چیزیں گھر کے دوسرے افراد سے الگ رکھیں۔</string>
+    <string name="use_masked">24 گھنٹے ماسک کا استعمال کریں۔ جب ماسک آلودہ یا نم ہوجائے تو اسے تبدیل کرلیں۔</string>
+    <string name="wash_hands">اپنے ہاتھ صابن اور پانی سے کم از کم بیس سیکنڈ دھوئیں۔ اور کثرت سے دھوئیں۔</string>
+    <string name="question_title_exposure">سفر اور رابطہ</string>
     <string name="question_title_symptoms">علامات</string>
+
+    <string name="civil_hospital">سول اسپتال، کراچی</string>
+    <string name="jinnah_hospital">جناح اسپتال، کراچی</string>
+    <string name="dow_hospital">ڈائو یونیوسٹی اوجھا اسپتال، کراچی</string>
+    <string name="aga_khan_hospital">آغا خان اسپتال، کراچی</string>
+
+    <string name="other_contacts">-----  اور آپ مندرجہ ذیل کسی بھی نمبر پر رابطہ کر سکتے ہیں  -----</string>
 
 </resources>

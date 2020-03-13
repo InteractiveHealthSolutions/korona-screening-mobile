@@ -29,5 +29,12 @@
     <string name="wash_hands">Wash your hands with water and soap regularly for at least 20 seconds</string>
     <string name="question_title_exposure">Exposure</string>
     <string name="question_title_symptoms">Symptoms</string>
+    
+    <string name="civil_hospital">Civil Hospital, Karachi</string>
+    <string name="jinnah_hospital">Jinnah Hospital, Karachi</string>
+    <string name="dow_hospital">Dow University OJHA Hospital, Karachi</string>
+    <string name="aga_khan_hospital">Aga Khan Hospital, Karachi</string>
+
+    <string name="other_contacts">-----  Or you can contact any of the given helplines anytime  -----</string>
 
 </resources>

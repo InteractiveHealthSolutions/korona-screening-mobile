@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.ihsinformatics.covid.App;
 import com.ihsinformatics.covid.R;
@@ -70,7 +71,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void showToast(String Message) {
-
+        Toast.makeText(this, Message , Toast.LENGTH_SHORT).show();
     }
 
     public void onLoginButtonClicked(View view) {

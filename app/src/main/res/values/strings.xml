@@ -5,11 +5,11 @@
     <string name="sec_1_question_2">Have you had close contact with any person , who has returned from Mainland China/Iran/South Korea/ Italy / other high burden country of COVID-19 infection in the last 14 days?</string>
     <string name="sec_1_question_3">Have you had close contact with a probable or confirmed case of COVID-19 in the last 14 days?</string>
     <string name="sec_1_question_4">Are you currently living with a probable or confirmed case of Corona since the last 14 days?</string>
-    <string name="sec_2_question_1">Do you have a fever?</string>
-    <string name="sec_3_question_1">Do you have a cough?</string>
-    <string name="sec_3_question_2">Do you have a cold?</string>
-    <string name="sec_3_question_3">Do you have a sore throat?</string>
-    <string name="sec_3_question_4">Do you have a shortness of breath?</string>
+    <string name="sec_2_question_1">Do you have fever?</string>
+    <string name="sec_3_question_1">Do you have cough?</string>
+    <string name="sec_3_question_2">Do you have cold?</string>
+    <string name="sec_3_question_3">Do you have sore throat?</string>
+    <string name="sec_3_question_4">Do you have shortness of breath?</string>
     <string name="yes">Yes, I have</string>
     <string name="no">No, have not</string>
     <string name="question">Question</string>

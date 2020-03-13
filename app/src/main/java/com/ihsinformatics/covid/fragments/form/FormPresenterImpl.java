@@ -81,20 +81,21 @@ public class FormPresenterImpl implements FormContract.Presenter {
             e.printStackTrace();
         }
 
-        view.showResult(totalScore);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), object.toString());
 
         apiService.submitForm(body).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                view.showResult(totalScore);
+                //Do Nothing
             }
 
             @Override
             public void onFailure(Call<BaseResponse> call, Throwable t) {
-                view.showResult(totalScore);
+                //Do Nothing
             }
         });
+
+        view.showResult(totalScore);
     }
 
     private JSONObject getData() throws JSONException {

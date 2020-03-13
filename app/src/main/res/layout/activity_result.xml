@@ -28,7 +28,7 @@
             <ImageView
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_ihs_logo" />
 
 
@@ -75,6 +75,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingTop="@dimen/_4sdp"
+                android:gravity="center"
                 android:paddingRight="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_4sdp"
                 android:text="Low probability of COVID-19"
@@ -113,6 +114,7 @@
                     android:id="@+id/layout_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
                     android:orientation="vertical" />
 
                 <LinearLayout

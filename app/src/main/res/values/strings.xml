@@ -14,7 +14,7 @@
     <string name="no">No, have not</string>
     <string name="question">Question</string>
     <string name="section">Section</string>
-    <string name="login_info">There will be a set of questions which we would like you to answer. Do you want to continue?</string>
+    <string name="login_info">This app will anonymously record your answers to the self-assessment questions. No personal or identifiable data about you is requested or recorded</string>
     <string name="agreed_with_the_terms_and_condition">Agreed with the Terms and condition</string>
     <string name="your_score">Your Risk Score</string>
     <string name="score_detail">Your Risk score is %d you have a chance for development of COVID -19. Further, you need medical assistance, please visit the following designated hospitals for further medical workup.</string>

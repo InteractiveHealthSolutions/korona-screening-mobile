@@ -10,7 +10,7 @@ import java.util.List;
 public class ResultPresenterImpl implements ResultContract.Presenter {
 
     private ResultContract.View view;
-    private int score;
+
 
     @Override
     public void takeView(ResultContract.View view) {
@@ -29,7 +29,7 @@ public class ResultPresenterImpl implements ResultContract.Presenter {
 
     @Override
     public void setScore(int score) {
-        this.score = score;
+
 
         switch (score) {
             case 0:

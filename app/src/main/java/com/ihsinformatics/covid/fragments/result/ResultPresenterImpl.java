@@ -10,7 +10,7 @@ import java.util.List;
 public class ResultPresenterImpl implements ResultContract.Presenter {
 
     private ResultContract.View view;
-    private int score;
+
 
     @Override
     public void takeView(ResultContract.View view) {
@@ -29,7 +29,7 @@ public class ResultPresenterImpl implements ResultContract.Presenter {
 
     @Override
     public void setScore(int score) {
-        this.score = score;
+
 
         switch (score) {
             case 0:
@@ -71,10 +71,10 @@ public class ResultPresenterImpl implements ResultContract.Presenter {
 
     private List<Location> getLocations() {
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location("Civil Hospital, Karachi", "+92 21 99215740", "24.859247, 67.010084"));
-        locations.add(new Location("Jinnah Hospital, Karachi", "+92 21 99201300", "24.852211, 67.044245"));
-        locations.add(new Location("Dow University OJHA Hospital, Karachi", "+92 21 99232660", "24.943724, 67.138596"));
-        locations.add(new Location("Agha Khan Hospital, Karachi", "+92 21 34664931", "24.892526, 67.074966"));
+        locations.add(new Location(view.getStringResource(R.string.civil_hospital), "+92 21 99215740", "24.859247, 67.010084"));
+        locations.add(new Location(view.getStringResource(R.string.jinnah_hospital), "+92 21 99201300", "24.852211, 67.044245"));
+        locations.add(new Location(view.getStringResource(R.string.dow_hospital), "+92 21 99232660", "24.943724, 67.138596"));
+        locations.add(new Location(view.getStringResource(R.string.aga_khan_hospital), "+92 21 34664931", "24.892526, 67.074966"));
         return locations;
     }
 }

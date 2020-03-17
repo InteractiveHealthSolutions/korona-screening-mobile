@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="Section 1"
             android:textColor="@color/white"
-            android:textSize="33sp"
+            android:textSize="@dimen/_20ssp"
             android:textStyle="bold" />
 
         <View
@@ -30,7 +30,7 @@
     <ImageView
         android:id="@+id/icon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_125sdp"
         android:padding="@dimen/padding_large"
         android:src="@drawable/ic_plane" />
 
@@ -51,14 +51,13 @@
         android:layout_marginBottom="@dimen/margin_very_large"
         android:text="some dummy question to appear here as an example here are some word you have to explain "
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_title" />
+        android:textSize="@dimen/_16ssp" />
 
     <LinearLayout
         android:id="@+id/quiz_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom|center"
-        android:layout_marginTop="@dimen/margin_very_large"
         android:orientation="horizontal">
 
     </LinearLayout>

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Precautions to be taken"
+            android:text="@string/precaution_taken"
             android:textStyle="bold"
             android:textSize="@dimen/text_size_large" />
 
@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wash your hands often with soap and water for at least 20 seconds especially after you have been in a public place, or after blowing your nose, coughing, or sneezing."
+            android:text="@string/wash_hands"
             android:drawableLeft="@drawable/ic_wash_hands"
             android:drawablePadding="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_10sdp"
@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Avoid close contact with people who are sick"
+            android:text="@string/close_contact"
             android:drawableLeft="@drawable/ic_no_contact"
             android:drawablePadding="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_10sdp"
@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="If you are sick:  You should wear a facemask when you are around other people (e.g., sharing a room or vehicle) and before you enter a healthcare provider’s office."
+            android:text="@string/use_facemask"
             android:drawableLeft="@drawable/ic_mask"
             android:drawablePadding="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_10sdp"

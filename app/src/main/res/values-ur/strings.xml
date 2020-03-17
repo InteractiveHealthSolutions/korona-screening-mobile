@@ -3,31 +3,47 @@
     <string name="app_name">COVID App</string>
 
     <string name="go">آگے</string>
-    <string name="sec_1_question_1">کیا آپ نے گذشتہ 14 دنوں میں مینلینڈ چین / ایران / جنوبی کوریا / اٹلی / COVID-19 انفیکشن کے دوسرے زیادہ بوجھ والے ملک سے سفر کیا ہے؟</string>
-    <string name="sec_1_question_2" ></string>
-    <string name="sec_1_question_3" ></string>
-    <string name="sec_1_question_4" ></string>
-    <string name="sec_2_question_1" ></string>
-    <string name="sec_3_question_1" ></string>
-    <string name="sec_3_question_2" ></string>
-    <string name="sec_3_question_3" ></string>
-    <string name="sec_3_question_4" ></string>
+    <string name="sec_1_question_1">کیا آپ نے گزشتہ دو ہفتوں میں چین، ایران، جنوبی کوریا، اٹلی یا کورونا وائرس سے متاثرہ کسی اور ملک کا سفر کیا ہے؟</string>
+    <string name="sec_1_question_2" >کیا آپ کا کسی ایسے فرد کے ساتھ میل جول (مثلاً ہاتھ ملانا، ساتھ کھانا، وغیرہ) ہوا ہے جس نے گزشتہ دو ہفتوں میں چین، ایران، جنوبی کوریا، اٹلی یا کورونا وائرس سے متاثرہ کسی اور ملک کا سفر کیا ہے؟</string>
+    <string name="sec_1_question_3" >کیا گزشتہ دو ہفتوں میں آپ کا کسی ایسے فرد کے ساتھ میل جول (مثلاً ہاتھ ملانا، ساتھ کھانا، وغیرہ) ہوا ہے جسے کرونا وائرس سے متاثر ہونے کی تصدیق یا شبہ ہو چکا ہو؟</string>
+    <string name="sec_1_question_4" >کیا گزشتہ دو ہفتوں میں آپ نے کسی ایسے فرد کے ساتھ  رہائش اختیار کی جسے کرونا وائرس سے متاثر ہونے کی تصدیق یا شبہ ہو چکا ہو؟</string>
+    <string name="sec_2_question_1" >کیا آپ کو بخار ہے؟</string>
+    <string name="sec_3_question_1" >کیا آپ کو کھانسی ہے؟</string>
+    <string name="sec_3_question_2" >کیا اپ کو زکام ہے؟</string>
+    <string name="sec_3_question_3" >کیا آپ کا گلا خراب ہے؟</string>
+    <string name="sec_3_question_4" >کیا آپ کو سانس لینے میں تکلیف ہے؟</string>
     <string name="yes">جی ہاں</string>
     <string name="no">نہیں</string>
     <string name="question">سوال</string>
     <string name="section">سیکشن</string>
-    <string name="login_info">کرونا وایرس کی تشخیص کے لیے ہم آپ سے کچھ سوالات پوچھے گے۔ کیا آپ اگے بڑھنا چاہے گے؟</string>
+    <string name="login_info">اس ایپ میں آپ کے بارے میں کوئی ذاتی یا قابل شناخت ڈیٹا ریکارڈ نہیں کیا جائے گا۔</string>
     <string name="agreed_with_the_terms_and_condition">شرائط و ضوابط سے اتفاق ہے؟</string>
-    <string name="your_score">Your Score</string>
-    <string name="score_detail">Your score is %d you have a chance for development of COVID -19. Further, you need medical assistance, please visit the following designated hospitals for further medical workup.</string>
-    <string name="no_indication">There are no indication that you are currently infected by</string>
-    <string name="no_chance">No Chance for development of COVID-19</string>
-    <string name="low_probability">Low probability  of COVID-19</string>
-    <string name="high_probability">Moderate to High probability of  COVID -19</string>
-    <string name="instruction">Instructions</string>
-    <string name="isolate_yourself">Isolate yourself in a separate room of your home and limit your movement there</string>
-    <string name="avoid_close_contact">Keep items of your personal use separate from other family members</string>
-    <string name="use_masked">Use mask 24 hours and change it when it becomes soaked or dirty</string>
-    <string name="wash_hands">Wash your hands with water and soap regularly for at least 20 seconds</string>
+    <string name="your_score">نتیجہ</string>
+    <string name="score_detail">آپ کا نتیجہ %d ہے آپ کو کورونہ وائرس ہونے کا امکان ہے۔ مزید، آپ کو طبی امداد کی ضرورت ہے۔ برائے مہربانی مندرجہ ذیل اسپتالوں کا دورہ کریں۔</string>
+    <string name="no_indication">آپ کو کورونا وائرس ہونے کا کوئی امکان نہیں ہے۔</string>
+    <string name="no_chance">آپ کورونا وائرس سے متاثر نہیں ہیں۔</string>
+    <string name="low_probability">کورونا وائرس سے متاثر ہونے کا امکان کم ہے</string>
+    <string name="high_probability">کورونا وائرس سے متاثر ہونے کا امکان ہے</string>
+    <string name="instruction">ہدایات</string>
+    <string name="isolate_yourself">گھر میں اپنا کمرہ علیحدہ کر لیں اور باہر نکلنے سے گریز کریں۔</string>
+    <string name="avoid_close_contact">اپنے استعمال کی چیزیں گھر کے دوسرے افراد سے الگ رکھیں۔</string>
+    <string name="use_masked">24 گھنٹے ماسک کا استعمال کریں۔ جب ماسک آلودہ یا نم ہوجائے تو اسے تبدیل کرلیں۔</string>
+    <string name="wash_hands">اپنے ہاتھ صابن اور پانی سے کم از کم بیس سیکنڈ دھوئیں۔ اور کثرت سے دھوئیں۔</string>
+    <string name="question_title_exposure">سفر اور رابطہ</string>
+    <string name="question_title_symptoms">علامات</string>
+
+    <string name="civil_hospital">سول اسپتال، کراچی</string>
+    <string name="jinnah_hospital">جناح اسپتال، کراچی</string>
+    <string name="dow_hospital">ڈائو یونیوسٹی اوجھا اسپتال، کراچی</string>
+    <string name="aga_khan_hospital">آغا خان اسپتال، کراچی</string>
+
+    <string name="other_contacts">-----  اور آپ مندرجہ ذیل کسی بھی نمبر پر رابطہ کر سکتے ہیں  -----</string>
+
+    <string name="wash_hands_instruction">کم سے کم 20 سیکنڈ تک اپنے ہاتھوں کو صابن اور پانی سے دھوئے ، خاص طور پر آپ عوامی مقام پر رہنے کے بعد ، کھانسی ، یا چھینکنے کے بعد۔</string>
+    <string name="close_contact">بیمار لوگوں سے رابطہ نہ کریں</string>
+    <string name="use_facemask">گر آپ بیمار ہیں تو لوگوں سے ملنے سے اجتناب کریں اور ماسک کا استعمال کریں۔</string>
+
+    <string name="precaution_taken">احتياطی تدابیر</string>
+    <string name="error_term_condition">براہ کرم شرائط و ضوابط قبول کریں</string>
 
 </resources>

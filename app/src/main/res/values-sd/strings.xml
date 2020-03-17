@@ -3,35 +3,50 @@
     <string name="app_name">COVID App</string>
 
     <string name="go">اڳيون</string>
-    <string name="sec_1_question_1">گذريل ۱۴ ڏينهن ۾ ڇا توهان COVID-19 کان متاثر ملڪ جھڙوڪ چين​​​​​​​​​​​​​​​​​​​​​/ايران/​ڏکڻ ڪوريا​/اٽلي مان آيا آهيو؟ </string>
-    <string name="sec_1_question_2" > گذريل ۱۴ ڏينهن ۾ ڇا توهان ڪنهن به ماڻھون سان ويجهڙائپ ڪئي آهي، جيڪو COVID-19 کان متاثر ملڪ جھڙوڪ چين/​​​​​​​​​​​​​​​​​​​​​ايران/​جنوبي ڪوريا/​اٽلي مان آيو هجي؟ </string>
-    <string name="sec_1_question_3" > گذريل ۱۴ ڏينهن ۾ ڇا توهان COVID-19 جي امڪاني يا تصديق ٿيل ماڻهون سان ويجهڙائپ ڪئي آهي؟</string>
-    <string name="sec_1_question_4" >گذريل ۱۴ ڏينهن کان ڇا توهان ڪرونا جي امڪاني يا تصديق ٿيل ماڻهون سان رهندڙ آهيو؟ </string>
-    <string name="sec_2_question_1" > گذريل ۱۴ ڏينهن ۾ ڇا توهان کي بخار COVID-19 کان متاثر ملڪ جھڙوڪ چين/​​​​​​​​​​​​​​​​​​​​​​ايران/ڏکڻ ڪوريا/​​اٽلي مان موٽڻ کان پوء ٿيو آهي؟ </string>
-    <string name="sec_2_question_2" >  گذريل ۱۴ ڏينهن ۾ ڇا توهان کي بخار ڪنهن اهڙي ماڻھون سان ملي ڪري ٿيو آھي جيڪو COVID-19 کان متاثر ملڪ جھڙوڪ چين/​​​​​​​​​​​​​​​​​​​​​​​ايران/​ڏکڻ ڪوريا/​​​اٽلي مان موٽڻيو ھجي؟</string>
+    <string name="sec_1_question_1">گذريل ۱۴ ڏينهن ۾ ڇا توهان ڪورونا وائرس کان متاثر ملڪ جھڙوڪ چين​​​​​​​​​​​​​​​​​​​​​/ايران/​ڏکڻ ڪوريا​/اٽلي مان آيا آهيو؟</string>
+    <string name="sec_1_question_2">گذريل ۱۴ ڏينهن ۾ ڇا توهان ڪنهن به ماڻھون سان ويجهڙائپ ڪئي آهي، جيڪو ڪورونا وائرس کان متاثر ملڪ جھڙوڪ چين/​​​​​​​​​​​​​​​​​​​​​ايران/​جنوبي ڪوريا/​اٽلي مان آيو هجي؟</string>
+    <string name="sec_1_question_3">گذريل ۱۴ ڏينهن ۾ ڇا توهان ڪورونا وائرس جي امڪاني يا تصديق ٿيل ماڻهون سان ويجهڙائپ ڪئي آهي؟</string>
+    <string name="sec_1_question_4">گذريل ۱۴ ڏينهن کان ڇا توهان ڪورونا جي امڪاني يا تصديق ٿيل ماڻهون سان رهندڙ آهيو؟</string>
+    <string name="sec_2_question_1" >ڇا توهان کي بخار آهي؟</string>
+    <!--<string name="sec_2_question_2" >  گذريل ۱۴ ڏينهن ۾ ڇا توهان کي بخار ڪنهن اهڙي ماڻھون سان ملي ڪري ٿيو آھي جيڪو COVID-19 کان متاثر ملڪ جھڙوڪ چين/​​​​​​​​​​​​​​​​​​​​​​​ايران/​ڏکڻ ڪوريا/​​​اٽلي مان موٽڻيو ھجي؟</string>
     <string name="sec_2_question_3" >گذريل ۱۴ ڏينهن ۾ ڇا توهان کي بخار ڪنهن اهڙي ماڻھون سان ملي ڪري ٿيو آھي جيڪو ڪرونا جو امڪاني يا تصديق ٿيل مريض ھجي؟ </string>
-    <string name="sec_2_question_4" >  ڇا توهان کي بخارCOVID-19 جي امڪاني يا تصديق ٿيل ماڻھون سان رهندڙ رهڻ دوران ٿيو؟</string>
-    <string name="sec_3_question_1" >گذريل ۱۴ ڏينهن ۾ ڇا توهان کي کنگھه،  ٿڌ، ڳلي ۾ تڪليف،  ساھ ۾ تڪليف COVID-19 کان متاثر ملڪ جھڙوڪ چين​​​/​​​​​​​​​​​​​​​​​​​​ايران​/ڏکڻ ڪوريا/​​​اٽلي مان موٽڻ کان پوء ٿي آهي؟</string>
-    <string name="sec_3_question_2" >  گذريل ۱۴ ڏينهن ۾ ڇا توهان کي کنگھه،  ٿڌ، ڳلي ۾ تڪليف،  ساھ ۾ تڪليف ڪنهن اهڙي ماڻھون سان ملي ڪري ٿي آھي جيڪو COVID-19 کان متاثر ملڪ جھڙوڪ چين/​​​​​​​​​​​​​​​​​​​​​​​​ايران/​​ڏکڻ ڪوريا/​​​​اٽلي مان موٽڻيو ھجي؟</string>
-    <string name="sec_3_question_3" > گذريل ۱۴ ڏينهن ۾ ڇا توهان کي کنگھه،  ٿڌ، ڳلي ۾ تڪليف،  ساھ ۾ تڪليف COVID-19 جي امڪاني يا تصديق ٿيل ماڻھون سان رهندڙ رهڻ دوران ٿي؟</string>
-    <string name="sec_3_question_4" > گذريل ۱۴ ڏينهن ۾ ڇا توهان کي  کنگھه،  ٿڌ، ڳلي ۾ تڪليف،  ساھ ۾ تڪليف COVID-19 جي امڪاني يا تصديق ٿيل ماڻھون سان رهندڙ رهڻ دوران ٿي؟</string>
+    <string name="sec_2_question_4" >  ڇا توهان کي بخارCOVID-19 جي امڪاني يا تصديق ٿيل ماڻھون سان رهندڙ رهڻ دوران ٿيو؟</string>-->
+    <string name="sec_3_question_1" >ڇا توهان کي کنگھه آهي؟</string>
+    <string name="sec_3_question_2" >ڇا توهان کي ٿڌ آهي؟</string>
+    <string name="sec_3_question_3" >ڇا توهان کي ڳلي ۾ تڪليف آهي؟</string>
+    <string name="sec_3_question_4" >ڇا توهان کي ساھ ۾ تڪليف آهي؟</string>
     <string name="yes">ها</string>
     <string name="no">نه</string>
     <string name="question">سوال</string>
     <string name="section">حصي</string>
-    <string name="login_info">کورونا وائرس جو جائزو وٺڻ لاء سوالن جو هڪ سيٽ هوندو. ڇا توهان جواب ڏيڻ پسند ڪندو؟</string>
+    <string name="login_info">توهان جي باري ۾ ڪابه ذاتي يا سڃاڻپ وارو ڊيٽا هن ايپ ۾ رڪارڊ ڪيو ويندو.</string>
     <string name="agreed_with_the_terms_and_condition">انهن شرطن ۽ حالت سان قبول ڪيو وڃي؟</string>
-    <string name="your_score">Your Score</string>
-    <string name="score_detail">Your score is %d you have a chance for development of COVID -19. Further, you need medical assistance, please visit the following designated hospitals for further medical workup.</string>
-    <string name="no_indication">There are no indication that you are currently infected by</string>
-    <string name="no_chance">No Chance for development of COVID-19</string>
-    <string name="low_probability">Low probability  of COVID-19</string>
-    <string name="high_probability">Moderate to High probability of  COVID -19</string>
-    <string name="instruction">Instructions</string>
-    <string name="isolate_yourself">Isolate yourself in a separate room of your home and limit your movement there</string>
-    <string name="avoid_close_contact">Keep items of your personal use separate from other family members</string>
-    <string name="use_masked">Use mask 24 hours and change it when it becomes soaked or dirty</string>
-    <string name="wash_hands">Wash your hands with water and soap regularly for at least 20 seconds</string>
+    <string name="your_score">نتیجو</string>
+    <string name="score_detail">توھان جو نتيجو %d آھي ته ڪورونا وائرس جو امڪان آهي. وڌيڪ، توھان کي ميڊيڪل سھائتا جي ضرورت آھي، مھرباني ڪري ميڊيڪل چيڪپ ڪرآئڻ لاء ھیٺئین نامزد اسپتالن جو دورو ڪيو.</string>
+    <string name="no_indication">ڪوبه اھڙي نشاني نه آھي ته توھان ڪورونا وائرس کان متاثر آھيو.</string>
+    <string name="no_chance">ڪورونا وائرس جو امڪان نا آهي</string>
+    <string name="low_probability">ڪورونا وائرس جو گھٽ امڪان</string>
+    <string name="high_probability">ڪورونا وائرس جو وچولي کان وڌيڪ ھئڻ جو امڪان</string>
+    <string name="instruction">هدايتون</string>
+    <string name="isolate_yourself">پاڻ کي گھر جي الڳ ڪمري ۾ بند ڪيو ۽ چرپر کان محدود ڪيو.</string>
+    <string name="avoid_close_contact">توهان جي ذاتي استعمال جون شيون گھر جي ڀاتين کان الڳ ڪيو.</string>
+    <string name="use_masked">ماسڪ ۲۴ ڪلاڪ استعمال ڪيو ۽ جڏهن پسي يا خراب ٿي وڄي ته تبديل ڪيو.</string>
+    <string name="wash_hands">پنهنجي هٿن کي گهٽ ۾ گهٽ ۲۰ سيڪنڊن لاء پاڻي ۽ صابن سان ڌوئو.</string>
+    <string name="question_title_exposure">سفر ۽ رابطو</string>
+    <string name="question_title_symptoms">علامات</string>
 
+    <string name="civil_hospital">سول ہسپتال، کراچی</string>
+    <string name="jinnah_hospital">جناح ہسپتال، کراچی</string>
+    <string name="dow_hospital">ڈائو یونیوسٹی اوجھا ہسپتال، کراچی</string>
+    <string name="aga_khan_hospital">آغا خان ہسپتال، کراچی</string>
+
+    <string name="other_contacts">-----  ٻيو توھان ھيٺين ڪنھن به نمبر تي رابطو ڪري تا سڳيو  -----</string>
+
+    <string name="wash_hands_instruction">گهٽ ۾ گهٽ ۲۰ سيڪنڊن لاء هٿ پاڻي ۽ صابڻ سان ڌوئو، خاص طور تي عوامي جاء تي ھئڻ کان پوءِ، کنگھڻ يا ڇڪ کانپوء.</string>
+    <string name="close_contact">بيمار ماڻهن سان رابطو نه ڪيو.</string>
+    <string name="use_facemask">جيڪڏھن توھان بيمار آھيو ته ماڻھن سان نه ملو ۽ مسڪ جو استعمال ڪريو.</string>
+
+    <string name="precaution_taken">احتياطی تدابیر</string>
+    <string name="error_term_condition">مهرباني ڪري شرطون ۽ شرط قبول ڪريو</string>
 
 </resources>

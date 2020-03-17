@@ -72,6 +72,7 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
     @Override
     public void showResult(Integer totalScore) {
         Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("score", totalScore);
         startActivity(intent);
         finish();

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:innerRadius="0dp"
         android:orientation="horizontal"
-        app:cardCornerRadius="@dimen/_40sdp"
-       android:layout_margin="@dimen/_5sdp"
-
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:cardElevation="0dp"
         app:contentPadding="@dimen/_3sdp">
 
         <LinearLayout
@@ -20,25 +20,25 @@
                 android:id="@+id/hospital_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:layout_marginLeft="@dimen/_7sdp"
-                android:textSize="@dimen/_8sdp"
+                android:gravity="center"
                 android:text="Aga khan Hospital, Karachi"
+                android:textSize="@dimen/_8sdp"
 
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="right">
+                android:gravity="end">
 
                 <ImageView
                     android:id="@+id/call"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="right"
-                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:src="@drawable/ic_call" />
 
                 <ImageView
@@ -46,11 +46,12 @@
                     android:id="@+id/location"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="right"
                     android:src="@drawable/ic_location" />
             </LinearLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 </layout>

@@ -28,7 +28,7 @@
             <ImageView
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_ihs_logo" />
 
 
@@ -54,8 +54,9 @@
                 android:id="@+id/score"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:layout_gravity="center"
-                android:gravity="center"
+                android:gravity="center|center_vertical"
                 android:text="1"
                 android:textSize="@dimen/_50sdp"
                 android:textStyle="bold" />
@@ -67,12 +68,17 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_40sdp">
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/_12sdp"
+
+            >
 
             <TextView
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingTop="@dimen/_4sdp"
                 android:paddingRight="@dimen/_10sdp"
@@ -113,8 +119,8 @@
                     android:id="@+id/layout_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
                     android:orientation="vertical" />
-
                 <LinearLayout
                     android:id="@+id/layout_contact_root"
                     android:layout_width="match_parent"
@@ -127,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="-----  Or you can contact any of the given helplines anytime  -----"
+                        android:text="@string/other_contacts"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_8sdp" />
 
@@ -148,19 +154,24 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_10sdp"
                         app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="@dimen/_40sdp">
+                        app:cardCornerRadius="@dimen/_12sdp">
 
                         <TextView
                             android:id="@+id/instruction"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingLeft="@dimen/_20sdp"
                             android:paddingTop="@dimen/_4sdp"
-                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_20sdp"
                             android:paddingBottom="@dimen/_4sdp"
-                            android:text="Instruction"
-                            android:textStyle="bold" />
+                            android:gravity="center_vertical"
+                            android:text="@string/instruction"
+                            android:textStyle="bold"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:includeFontPadding="true"
+                            android:drawableRight="@drawable/ic_action_name"
+                            />
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.google.android.material.button.MaterialButton;
 import com.ihsinformatics.covid.R;
 import com.ihsinformatics.covid.model.Question;
 import com.ihsinformatics.covid.views.OptionWidget;
@@ -44,6 +45,19 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder
         holder.section.setText(question.getSectionName());
         holder.icon.setImageResource(question.getIcon());
         holder.questionNo.setText(context.getString(R.string.question) + " " + (position + 1) + "/" + questions.size());
+        if (question.isCountriesAvailable()) {
+            holder.countries.setVisibility(View.VISIBLE);
+            holder.countries.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    optionClickedListener.onInfoClicked();
+                }
+            });
+
+        } else {
+            holder.countries.setVisibility(View.GONE);
+        }
+
         if (holder.quizLayout.getChildCount() == 0) {
             OptionWidget quizOptionWidget = new OptionWidget(context, question, optionClickedListener);
             holder.quizLayout.addView(quizOptionWidget.getView());
@@ -62,6 +76,7 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder
         TextView questionNo;
         TextView section;
         ImageView icon;
+        MaterialButton countries;
 
         public QuizViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +85,7 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder
             questionNo = itemView.findViewById(R.id.question_no);
             section = itemView.findViewById(R.id.section);
             icon = itemView.findViewById(R.id.icon);
+            countries = itemView.findViewById(R.id.countries);
         }
     }
 }

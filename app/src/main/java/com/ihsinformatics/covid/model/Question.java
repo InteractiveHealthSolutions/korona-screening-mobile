@@ -8,10 +8,10 @@ public class Question implements Serializable {
     private int section;
     private String sectionName;
     private String shortName;
-
     private String question;
     private List<Option> options;
     private int icon;
+    private boolean isCountriesAvailable;
 
 
 
@@ -25,6 +25,14 @@ public class Question implements Serializable {
         this.icon = icon;
     }
 
+    public boolean isCountriesAvailable() {
+        return isCountriesAvailable;
+    }
+
+    public Question enableCountries() {
+        isCountriesAvailable = true;
+        return this;
+    }
 
     public String getSectionName() {
         return sectionName;

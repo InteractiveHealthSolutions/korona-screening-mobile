@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="switch_tabs">
-        <item>male</item>
-        <item>female</item>
-        <item>other</item>
-    </string-array>
-    <string-array name="languague">
-        <item>English</item>
-        <item>اردو</item>
-        <item>سنڌي</item>
-
-    </string-array>
-    <string-array name="countries">
-        <item>China</item>
+    <string-array name="countries"><item>China</item>
         <item>Italy</item>
         <item>Iran</item>
         <item>South Korea</item>
@@ -43,6 +31,5 @@
         <item>Iraq</item>
         <item>Lebanon</item>
         <item>UAE</item>
-
     </string-array>
 </resources>

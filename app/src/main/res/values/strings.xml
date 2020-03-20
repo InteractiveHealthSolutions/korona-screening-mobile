@@ -43,6 +43,8 @@
 
     <string name="precaution_taken">Precautions to be taken</string>
     <string name="error_term_condition"><![CDATA[Please Accept the Term & conditions]]></string>
+    <string name="high_burden_countries">High Burden Countries</string>
+    <string name="ok">ok</string>
 
 
 </resources>

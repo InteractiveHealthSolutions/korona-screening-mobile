@@ -45,5 +45,7 @@
 
     <string name="precaution_taken">احتياطی تدابیر</string>
     <string name="error_term_condition">براہ کرم شرائط و ضوابط قبول کریں</string>
+    <string name="high_burden_countries">متاثرہ ممالک</string>
+    <string name="ok">ٹھیک ہے</string>
 
 </resources>

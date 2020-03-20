@@ -48,5 +48,7 @@
 
     <string name="precaution_taken">احتياطی تدابیر</string>
     <string name="error_term_condition">مهرباني ڪري شرطون ۽ شرط قبول ڪريو</string>
+    <string name="high_burden_countries">متاثر ٿيل ملڪن</string>
+    <string name="ok">ٺيڪ آهي</string>
 
 </resources>

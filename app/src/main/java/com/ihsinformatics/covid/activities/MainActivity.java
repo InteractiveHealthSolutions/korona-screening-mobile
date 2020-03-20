@@ -1,11 +1,16 @@
 package com.ihsinformatics.covid.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.ArrayAdapter;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.ihsinformatics.covid.App;
 import com.ihsinformatics.covid.R;
 import com.ihsinformatics.covid.adapter.AdapterListener;
@@ -20,7 +25,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity implements FormContract.View, AdapterListener.OptionClickedListener {
+public class MainActivity extends BaseActivity implements FormContract.View, AdapterListener.OptionClickedListener, DialogInterface.OnClickListener {
 
     LayoutFormBinding binding;
 
@@ -28,6 +33,7 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
     FormContract.Presenter presenter;
 
     List<Question> questions;
+    private AlertDialog countriesDialog;
 
 
     @Override
@@ -41,7 +47,6 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
 
         setAdapter();
 
-
     }
 
 
@@ -53,19 +58,39 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
         binding.quizPager.setAdapter(formAdapter);
         binding.quizPager.setOffscreenPageLimit(questions.size());
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, getResources().getStringArray(R.array.countries));
+        countriesDialog = new MaterialAlertDialogBuilder(this)
+                .setAdapter(adapter, null)
+                .setTitle(getStringResource(R.string.high_burden_countries))
+                .setCancelable(false)
+                .setIcon(R.drawable.ic_plane)
+                .setPositiveButton(getStringResource(R.string.ok), this)
+                .create();
+
+
     }
 
     @Override
     public void onOptionClicked(Question question, Option option) {
         presenter.updateScore(new FormAnswer(question.getShortName(), option), option.getScore(), question.getSection());
-        int position = binding.quizPager.getCurrentItem();
-        if (position < (questions.size() - 1)) {
-            position = position + 1;
-            binding.quizPager.setCurrentItem(position);
-        } else {
-            presenter.sendResult();
-            //Toast.makeText(MainActivity.this, "You have Corona Virus...", Toast.LENGTH_SHORT).show();
-        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int position = binding.quizPager.getCurrentItem();
+                if (position < (questions.size() - 1)) {
+                    position = position + 1;
+                    binding.quizPager.setCurrentItem(position);
+                } else {
+                    presenter.sendResult();
+                }
+            }
+        }, 1000);
+
+    }
+
+    @Override
+    public void onInfoClicked() {
+        countriesDialog.show();
     }
 
 
@@ -82,4 +107,12 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
     public String getStringResource(int resId) {
         return getResources().getString(resId);
     }
+
+    @Override
+    public void onClick(DialogInterface dialogInterface, int i) {
+        if (countriesDialog != null && countriesDialog.isShowing()) {
+            countriesDialog.dismiss();
+        }
+    }
+
 }

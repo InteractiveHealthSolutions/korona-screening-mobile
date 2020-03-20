@@ -8,5 +8,6 @@ public interface AdapterListener {
 
     public interface OptionClickedListener {
         public void onOptionClicked(Question question, Option option);
+        public void onInfoClicked();
     }
 }

@@ -27,6 +27,9 @@ public class OptionWidget extends Widget {
     private WidgetQuizOptionBinding binding;
     private Question question;
     private AdapterListener.OptionClickedListener optionClickedListener;
+    private boolean isAnswered = false;
+
+
 
     public OptionWidget(Context context, Question question, AdapterListener.OptionClickedListener optionClickedListener) {
         this.context = context;
@@ -115,11 +118,12 @@ public class OptionWidget extends Widget {
     private class CustomClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
-            MaterialButton radioButton = (MaterialButton) view;
-            Option option = (Option) radioButton.getTag();
-            optionClickedListener.onOptionClicked(question, option);
-
+            if(!isAnswered) {
+                isAnswered = true;
+                MaterialButton radioButton = (MaterialButton) view;
+                Option option = (Option) radioButton.getTag();
+                optionClickedListener.onOptionClicked(question, option);
+            }
         }
     }
 }

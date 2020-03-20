@@ -85,9 +85,7 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
             root.setLayoutParams(cardViewParams);
             root.requestLayout();
             binding.layoutDetails.addView(itemBinding.getRoot());
-
         }
-
     }
 
     @Override
@@ -134,9 +132,13 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
         @Override
         public void onClick(View view) {
             String phNumber = view.getTag().toString();
-            Intent intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:" + phNumber));
-            startActivity(intent);
+            try {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + phNumber));
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

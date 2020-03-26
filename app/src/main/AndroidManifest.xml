@@ -3,9 +3,11 @@
     package="com.ihsinformatics.korona">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name="com.ihsinformatics.korona.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,22 +15,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.ihsinformatics.korona.activities.InstructionActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name="com.ihsinformatics.korona.activities.ResultActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.ihsinformatics.korona.activities.LoginActivity"
-            android:screenOrientation="portrait"
-            >
+        <activity android:name=".activities.SplashActivity">
+
+        </activity>
+        <activity
+            android:name=".activities.InstructionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ihsinformatics.korona.activities.MainActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

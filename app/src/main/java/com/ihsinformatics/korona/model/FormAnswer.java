@@ -1,10 +1,12 @@
 package com.ihsinformatics.korona.model;
 
+import com.ihsinformatics.korona.model.question.Option;
+
 public class FormAnswer {
     String question;
-    Option answer;
+    String answer;
 
-    public FormAnswer(String question, Option answer) {
+    public FormAnswer(String question, String answer) {
         this.question = question;
         this.answer = answer;
     }
@@ -13,7 +15,7 @@ public class FormAnswer {
         return question;
     }
 
-    public Option getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 }

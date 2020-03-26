@@ -1,37 +1,47 @@
 package com.ihsinformatics.korona.activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.github.ybq.android.spinkit.style.MultiplePulse;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.gson.Gson;
 import com.ihsinformatics.korona.App;
 import com.ihsinformatics.korona.R;
 import com.ihsinformatics.korona.databinding.ActivityLoginBinding;
+import com.ihsinformatics.korona.db.entities.Location;
 import com.ihsinformatics.korona.fragments.login.LoginContract;
-import com.ihsinformatics.korona.model.Language;
-import com.ihsinformatics.korona.network.ApiService;
+import com.ihsinformatics.korona.model.FailureStatus;
+import com.ihsinformatics.korona.model.geocode.GeocodeResult;
+import com.ihsinformatics.korona.model.question.QuizResponse;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
-import lib.kingja.switchbutton.SwitchMultiButton;
+import static com.ihsinformatics.korona.fragments.login.LoginPresenterImpl.MY_PERMISSIONS_REQUEST_LOCATION;
+import static com.ihsinformatics.korona.fragments.login.LoginPresenterImpl.REQUEST_LOCATION;
 
-public class LoginActivity extends BaseActivity implements LoginContract.View {
+public class LoginActivity extends BaseActivity implements LoginContract.View, DialogInterface.OnClickListener, View.OnClickListener {
 
-    @Inject
-    SharedPreferences preferences;
-
-    @Inject
-    ApiService apiService;
-
+    public static final String FORM = "form";
     @Inject
     LoginContract.Presenter presenter;
 
-
     ActivityLoginBinding binding;
+    private GeocodeResult geocodeResult;
+    private ArrayAdapter<Location> stateAdapter;
+    private FailureStatus failureStatus;
 
 
     @Override
@@ -39,67 +49,180 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         super.onCreate(savedInstanceState);
         ((App) getApplication()).getComponent().inject(this);
 
-        Language selectedLangauge = presenter.getSelectedLangauge();
-        if (selectedLangauge != null)
-            super.updateLocale(this, selectedLangauge.getLocale());
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         presenter.takeView(this);
+        binding.refresh.setOnClickListener(this);
+        presenter.syncLocations();
+        if (presenter.getLastLocation() != null) {
+            updateLocation(presenter.getLastLocation());
 
-        setLanguageAdapter();
-        binding.language.setOnSwitchListener(new ActivityListener());
+        } else {
+            presenter.checkPermission(this);
+        }
     }
 
-    private void setLanguageAdapter() {
+    @Override
+    public void showToast(String Message) {
+        Toast.makeText(this, Message, Toast.LENGTH_SHORT).show();
+    }
 
-        Language selectedLangauge = presenter.getSelectedLangauge();
-        if (selectedLangauge != null) {
-            if (selectedLangauge.getLanguage().equals("English"))
-                binding.language.setSelectedTab(0);
-            else if (selectedLangauge.getLanguage().equals("اردو"))
-                binding.language.setSelectedTab(1);
-            else
-                binding.language.setSelectedTab(2);
+    public void onLoginButtonClicked(View view) {
+        if (isValidDetails()) {
+            presenter.fetchForm((Location) binding.state.spinner.getSelectedItem());
+            binding.layoutLoading.setVisibility(View.VISIBLE);
+            binding.layoutLocation.setVisibility(View.GONE);
+            toggleRefresh(View.GONE, FailureStatus.NONE);
+        }
+    }
+
+    private boolean isValidDetails() {
+        boolean isAllValid = true;
+
+        /*if (binding.country.spinner.getSelectedItem() == null) {
+            isAllValid = false;
+            showToast("Please select your country");
+        }*/
+
+        if (binding.state.spinner.getSelectedItem() == null) {
+            isAllValid = false;
+            showToast("Please select your State/Province");
+        }
+
+        if (!binding.agreed.isChecked()) {
+            isAllValid = false;
+            showToast(getString(R.string.error_term_condition));
+        }
+
+
+        return isAllValid;
+    }
+
+    @Override
+    public void startMainActivity(QuizResponse response) {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.putExtra(FORM, new Gson().toJson(response));
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void showLoading() {
+        binding.loader.spinKit.setIndeterminateDrawable(new MultiplePulse());
+        binding.loader.root.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        binding.loader.root.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public void showLocationReasonDialog() {
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(this)
+                .setTitle("Location Required")
+                .setMessage("This app required location to show the details on the basis of your location")
+                .setCancelable(false)
+                .setIcon(R.drawable.ic_location)
+                .setNeutralButton("OK", LoginActivity.this)
+                .create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void updateLocation(GeocodeResult geocodeResult) {
+        this.geocodeResult = geocodeResult;
+
+        if (stateAdapter != null) {
+            Location state = presenter.getLocationFromName(geocodeResult.getRegion());
+            selectSpinnerItemByValue(state);
+        } else if (!presenter.getStates().isEmpty()) {
+            setAdapter(presenter.getStates());
+            Location state = presenter.getLocationFromName(geocodeResult.getRegion());
+            selectSpinnerItemByValue(state);
         }
     }
 
 
     @Override
-    public void showToast(String Message) {
-        Toast.makeText(this, Message , Toast.LENGTH_SHORT).show();
-    }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    presenter.getUserLocation(this);
+                } else {
+                    showLocationReasonDialog();
+                }
+                return;
+            }
 
-    public void onLoginButtonClicked(View view) {
-        if (binding.agreed.isChecked())
-            startMainActivity();
-        else
-            showToast(getString(R.string.error_term_condition));
+        }
     }
 
     @Override
-    public void startMainActivity() {
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+    public void toggleRefresh(int visibility, FailureStatus status) {
+        failureStatus = status;
+        if (FailureStatus.FETCHING_FORM.equals(failureStatus)) {
+            binding.layoutLocation.setVisibility(View.VISIBLE);
+        } else {
+            binding.refresh.setVisibility(visibility);
+        }
+        binding.loadingText.setVisibility(visibility == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+        binding.loadingView.setVisibility(visibility == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
     }
 
-    private class ActivityListener implements SwitchMultiButton.OnSwitchListener {
-        @Override
-        public void onSwitch(int position, String name) {
-            Language language = presenter.getLanguageFromList(name);
-            if (language != null) {
-                presenter.saveLanguage(language);
-                setLocale(language.getLocale());
+    @Override
+    public void showLocationLayout() {
+        binding.layoutLoading.setVisibility(View.GONE);
+        binding.layoutLocation.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setAdapter(List<Location> response) {
+
+        stateAdapter = new ArrayAdapter<Location>(this, android.R.layout.simple_list_item_1, response);
+        // binding.country.spinner.setAdapter(countryAdapter);
+        binding.state.spinner.setAdapter(stateAdapter);
+
+        if (geocodeResult != null) {
+            Location state = presenter.getLocationFromName(geocodeResult.getRegion());
+            selectSpinnerItemByValue(state);
+        }
+    }
+
+    @Override
+    public void onClick(DialogInterface dialogInterface, int i) {
+        presenter.requestPermission(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_LOCATION) {
+            if (resultCode == RESULT_OK)
+                presenter.fetchLocationDetails(this);
+        }
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (FailureStatus.FETCHING_LOCATION.equals(failureStatus))
+            presenter.syncLocations();
+        if (FailureStatus.FETCHING_FORM.equals(failureStatus))
+            presenter.fetchForm((Location) binding.state.spinner.getSelectedItem());
+        toggleRefresh(View.GONE, FailureStatus.NONE);
+    }
+
+    public void selectSpinnerItemByValue(Location value) {
+        for (int position = 0; position < stateAdapter.getCount(); position++) {
+            if (stateAdapter.getItem(position).getLocationId() == value.getLocationId()) {
+                binding.state.spinner.setSelection(position);
+                return;
             }
         }
     }
 
-    private void setLocale(String languageCode) {
-        super.updateLocale(this, languageCode);
-        refreshActivity();
-    }
-
-    private void refreshActivity() {
-        startActivity(new Intent(LoginActivity.this, LoginActivity.class));
-        LoginActivity.this.finish();
-    }
 
 }

@@ -14,10 +14,10 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "SERVER_URL", '"https://covid19test.ihsinformatics.com/coronavirus/api/"'
+            buildConfigField "String", "SERVER_URL", '"http://18.141.27.134:8080/korona-screening/api/"'
         }
         release {
-            buildConfigField "String", "SERVER_URL", '"https://covid19.ihsinformatics.com/coronavirus/api/"'
+            buildConfigField "String", "SERVER_URL", '"http://18.141.27.134:8080/korona-screening/api/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -47,6 +47,8 @@ dependencies {
     implementation 'lib.kingja.switchbutton:switchbutton:1.1.8'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta01'

@@ -8,6 +8,8 @@ import android.view.View;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.ihsinformatics.korona.R;
+import com.ihsinformatics.korona.adapter.AdapterListener;
+import com.ihsinformatics.korona.model.question.Questions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,8 @@ import java.util.List;
 public class EditTextWidget {
 
     private Context context;
-    private String question;
+    private Questions question;
+    private AdapterListener.OptionClickedListener optionClickedListener;
     private String defaultValue;
     private int inputType;
     private int length;
@@ -25,12 +28,19 @@ public class EditTextWidget {
     private View view;
 
 
-    public EditTextWidget(Context context, String question, int inputType, int length, boolean isMandatory) {
+    public EditTextWidget(Context context, Questions question, int inputType, int length, boolean isMandatory) {
         this.context = context;
         this.question = question;
         this.inputType = inputType;
         this.length = length;
         this.isMandatory = isMandatory;
+    }
+
+    public EditTextWidget(Context context, Questions question, AdapterListener.OptionClickedListener optionClickedListener) {
+
+        this.context = context;
+        this.question = question;
+        this.optionClickedListener = optionClickedListener;
     }
 
 
@@ -67,7 +77,7 @@ public class EditTextWidget {
         view = inflater.inflate(R.layout.edit_text, null);
         TextInputEditText editText = (TextInputEditText) view.findViewById(R.id.edit_text);
         TextInputLayout hint = (TextInputLayout) view.findViewById(R.id.hint);
-        hint.setHint(question);
+        hint.setHint("");
         editText.setInputType(inputType);
         InputFilter[] filters = getInputFilters();
         editText.setFilters(filters);

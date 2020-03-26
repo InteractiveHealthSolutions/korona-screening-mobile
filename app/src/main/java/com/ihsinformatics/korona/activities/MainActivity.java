@@ -18,8 +18,9 @@ import com.ihsinformatics.korona.adapter.FormAdapter;
 import com.ihsinformatics.korona.databinding.LayoutFormBinding;
 import com.ihsinformatics.korona.fragments.form.FormContract;
 import com.ihsinformatics.korona.model.FormAnswer;
-import com.ihsinformatics.korona.model.Option;
-import com.ihsinformatics.korona.model.Question;
+
+import com.ihsinformatics.korona.model.question.Option;
+import com.ihsinformatics.korona.model.question.Questions;
 
 import java.util.List;
 
@@ -32,19 +33,18 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
     @Inject
     FormContract.Presenter presenter;
 
-    List<Question> questions;
+
     private AlertDialog countriesDialog;
+    private List<Questions> questions;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.layout_form);
-
         ((App) getApplication()).getComponent().inject(this);
         presenter.takeView(this);
-        questions = presenter.getQuestions();
-
+        questions = presenter.getQuestions(getIntent());
         setAdapter();
 
     }
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
 
     private void setAdapter() {
 
-        FormAdapter formAdapter = new FormAdapter(questions, this);
+        FormAdapter formAdapter = new FormAdapter(questions, presenter.getLocation(), this);
         binding.quizPager.setUserInputEnabled(false);
         binding.quizPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         binding.quizPager.setAdapter(formAdapter);
@@ -71,8 +71,8 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
     }
 
     @Override
-    public void onOptionClicked(Question question, Option option) {
-        presenter.updateScore(new FormAnswer(question.getShortName(), option), option.getScore(), question.getSection());
+    public void onOptionClicked(FormAnswer formAnswer) {
+        presenter.updateScore(formAnswer);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -5,6 +5,7 @@ import com.ihsinformatics.korona.activities.BaseActivity;
 import com.ihsinformatics.korona.activities.LoginActivity;
 import com.ihsinformatics.korona.activities.MainActivity;
 import com.ihsinformatics.korona.activities.ResultActivity;
+import com.ihsinformatics.korona.activities.SplashActivity;
 import com.ihsinformatics.korona.di.module.ApplicationModule;
 import com.ihsinformatics.korona.di.module.DatabaseModule;
 import com.ihsinformatics.korona.di.module.FormModule;
@@ -24,4 +25,6 @@ public interface AppComponent {
     void inject(BaseActivity baseActivity);
 
     void inject(ResultActivity resultActivity);
+
+    void inject(SplashActivity splashActivity);
 }

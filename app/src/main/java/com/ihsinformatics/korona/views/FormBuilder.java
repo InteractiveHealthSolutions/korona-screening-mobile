@@ -20,12 +20,11 @@ public class FormBuilder {
 
     public LinearLayout build() {
 
-        EditTextWidget customEditText = new EditTextWidget(context, "This is the test question", InputType.TYPE_CLASS_TEXT, 100, false);
+     //   EditTextWidget customEditText = new EditTextWidget(context, "This is the test question", InputType.TYPE_CLASS_TEXT, 100, false);
         RadioWidget radioWidget = new RadioWidget(context, "Gender").addButtons("male", "female", "others");
         SpinnerWidget widget = new SpinnerWidget(context, "List of items", Arrays.asList(new String[]{"abba", "tabba", "kabba"}));
 
-        baseLayout.addView(customEditText.build());
-        baseLayout.addView(customEditText.build());
+       // baseLayout.addView(customEditText.build());
         baseLayout.addView(radioWidget.build());
         baseLayout.addView(widget.build());
 

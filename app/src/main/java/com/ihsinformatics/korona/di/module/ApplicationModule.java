@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.ihsinformatics.korona.common.DevicePreferences;
 
 import javax.inject.Singleton;
@@ -23,6 +25,13 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
+    public Application provideApplication() {
+        return application;
+    }
+
+
+    @Provides
+    @Singleton
     public Context provideContext() {
         return application;
     }
@@ -38,4 +47,6 @@ public class ApplicationModule {
     public DevicePreferences provideDevicePreference(SharedPreferences sharedPreferences) {
         return new DevicePreferences(sharedPreferences);
     }
+
+
 }

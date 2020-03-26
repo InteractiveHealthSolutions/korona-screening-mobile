@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/section"
+            android:id="@+id/state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Section 1"
@@ -25,60 +25,73 @@
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:background="@color/white" />
-    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_125sdp"
-        android:padding="@dimen/padding_large"
-        android:src="@drawable/ic_plane" />
-
-    <TextView
-        android:id="@+id/question_no"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Question 1/12"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_title"
-        android:textStyle="bold" />
-
-
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:text="some dummy question to appear here as an example here are some word you have to explain "
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16ssp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/countries"
-            android:visibility="gone"
+        <TextView
+            android:id="@+id/country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/high_burden_countries"
-            app:backgroundTint="@color/white"
-            app:icon="@drawable/ic_info"
-            android:layout_centerHorizontal="true"
-            app:iconTint="@color/colorPrimaryDark"
-            android:textColor="@color/colorPrimaryDark"
-            android:textAllCaps="false"
-            app:cornerRadius="20dp" />
-    </RelativeLayout>
-
+            android:text="Section 1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/quiz_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom|center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center|center_vertical"
+        >
+
+
+        <TextView
+            android:id="@+id/question_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Question 1/12"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="some dummy question to appear here as an example here are some word you have to explain "
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/countries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/high_burden_countries"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:visibility="gone"
+                app:backgroundTint="@color/white"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_info"
+                app:iconTint="@color/colorPrimaryDark" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/quiz_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|center"
+            android:orientation="horizontal">
+
+        </LinearLayout>
 
     </LinearLayout>
 

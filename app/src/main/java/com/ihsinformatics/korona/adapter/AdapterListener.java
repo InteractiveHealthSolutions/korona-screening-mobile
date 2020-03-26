@@ -1,13 +1,17 @@
 package com.ihsinformatics.korona.adapter;
 
-import com.ihsinformatics.korona.model.Option;
-import com.ihsinformatics.korona.model.Question;
+
+import com.ihsinformatics.korona.model.FormAnswer;
+import com.ihsinformatics.korona.model.question.Option;
+import com.ihsinformatics.korona.model.question.Questions;
 
 
 public interface AdapterListener {
 
     public interface OptionClickedListener {
-        public void onOptionClicked(Question question, Option option);
+
         public void onInfoClicked();
+
+        public void onOptionClicked(FormAnswer formAnswer);
     }
 }

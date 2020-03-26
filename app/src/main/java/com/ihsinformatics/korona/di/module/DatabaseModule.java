@@ -16,22 +16,17 @@ import dagger.Provides;
 @Module
 public class DatabaseModule {
 
-    private AppDatabase appDatabase;
+    private static final String DB_NAME = "covid-19-db";
 
-
-    public DatabaseModule(Application application) {
-        appDatabase = Room.databaseBuilder(application, AppDatabase.class, "covid-db").allowMainThreadQueries().build();
+    @Singleton
+    @Provides
+    public AppDatabase provideAppDatabase(Application application) {
+        return  Room.databaseBuilder(application, AppDatabase.class, DB_NAME).allowMainThreadQueries()/*.addMigrations(MIGRATION_1_2,MIGRATION_2_3)*/.build();
     }
 
     @Singleton
     @Provides
-    public AppDatabase provideAppDatabase() {
-        return appDatabase;
-    }
-
-    @Singleton
-    @Provides
-    public FormsDao provideFormDao() {
+    public FormsDao provideFormDao(AppDatabase appDatabase) {
         return appDatabase.getFormsDao();
     }
 }

@@ -1,7 +1,13 @@
 package com.ihsinformatics.korona.fragments.login;
 
+import android.app.Activity;
+
+import com.ihsinformatics.korona.activities.LoginActivity;
 import com.ihsinformatics.korona.common.BasePresenter;
-import com.ihsinformatics.korona.model.Language;
+import com.ihsinformatics.korona.db.entities.Location;
+import com.ihsinformatics.korona.model.FailureStatus;
+import com.ihsinformatics.korona.model.geocode.GeocodeResult;
+import com.ihsinformatics.korona.model.question.QuizResponse;
 
 import java.util.List;
 
@@ -11,17 +17,46 @@ public interface LoginContract {
     interface View {
         void showToast(String Message);
 
-        void startMainActivity();
+        void startMainActivity(QuizResponse response);
+
+        void showLoading();
+
+        void hideLoading();
+
+
+
+        void showLocationReasonDialog();
+
+        void updateLocation(GeocodeResult geocodeResult);
+
+        void toggleRefresh(int visibility, FailureStatus status);
+
+        void showLocationLayout();
+
+        void setAdapter(List<Location> response);
     }
 
 
     interface Presenter extends BasePresenter<View> {
-        void login(String username, String password);
-        void saveLanguage(Language language);
-        List<Language> getLanguages();
+        void getUserLocation(Activity activity);
 
+        void checkPermission(LoginActivity activity);
 
-        Language getLanguageFromList(String name);
+        void requestPermission(LoginActivity activity);
+
+        List<Location> getCountries();
+
+        List<Location> getStates();
+
+        GeocodeResult getLastLocation();
+
+        void fetchLocationDetails(Activity activity);
+
+        void syncLocations();
+
+        Location getLocationFromName(String region);
+
+        void fetchForm(Location location);
     }
 
 }

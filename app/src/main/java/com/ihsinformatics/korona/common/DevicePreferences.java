@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.ihsinformatics.korona.model.Language;
+import com.ihsinformatics.korona.model.geocode.GeocodeResult;
 
 
 public class DevicePreferences {
@@ -21,6 +22,7 @@ public class DevicePreferences {
     public static final String LOTTERY_NOTIFICATION = "lotteryNotification";
     public static final String LANGUAGE = "language";
     public static final String ACTIVE_USER = "activeUser";
+    public static final String GEOCODE = "GEOCODE";
     SharedPreferences preferences;
 
     public DevicePreferences(SharedPreferences preferences) {
@@ -69,5 +71,14 @@ public class DevicePreferences {
     }
 
 
+    public void saveGeoCode(GeocodeResult geocodeResult) {
+        String json = new Gson().toJson(geocodeResult);
+        preferences.edit().putString(GEOCODE, json).apply();
+    }
 
+    public GeocodeResult getGeoCode() {
+        String json = preferences.getString(GEOCODE, "");
+        GeocodeResult gecode = new Gson().fromJson(json, GeocodeResult.class);
+        return gecode;
+    }
 }

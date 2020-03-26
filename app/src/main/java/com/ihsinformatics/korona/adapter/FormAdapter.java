@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,19 +15,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.ihsinformatics.korona.R;
-import com.ihsinformatics.korona.model.Question;
+
+import com.ihsinformatics.korona.model.question.Location;
+import com.ihsinformatics.korona.model.question.Questions;
+import com.ihsinformatics.korona.views.EditTextWidget;
 import com.ihsinformatics.korona.views.OptionWidget;
 
 import java.util.List;
 
+import static com.ihsinformatics.korona.model.QuestionView.RADIO_GROUP;
+import static com.ihsinformatics.korona.model.QuestionView.TEXT_BOX;
+
 public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder> {
 
-    List<Question> questions;
+    List<Questions> questions;
     Context context;
+    private Location location;
     AdapterListener.OptionClickedListener optionClickedListener;
 
-    public FormAdapter(List<Question> questions, AdapterListener.OptionClickedListener optionClickedListener) {
+    public FormAdapter(List<Questions> questions, Location location, AdapterListener.OptionClickedListener optionClickedListener) {
         this.questions = questions;
+        this.location = location;
         this.optionClickedListener = optionClickedListener;
     }
 
@@ -40,27 +49,20 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull QuizViewHolder holder, int position) {
-        Question question = questions.get(position);
-        holder.question.setText(question.getQuestion());
-        holder.section.setText(question.getSectionName());
-        holder.icon.setImageResource(question.getIcon());
+        Questions question = questions.get(position);
+        holder.question.setText(question.getQuestion().getDescription());
+        holder.state.setText(location.getLocationName());
+        holder.country.setText(location.getCountry());
         holder.questionNo.setText(context.getString(R.string.question) + " " + (position + 1) + "/" + questions.size());
-        if (question.isCountriesAvailable()) {
-            holder.countries.setVisibility(View.VISIBLE);
-            holder.countries.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    optionClickedListener.onInfoClicked();
-                }
-            });
-
-        } else {
-            holder.countries.setVisibility(View.GONE);
-        }
 
         if (holder.quizLayout.getChildCount() == 0) {
-            OptionWidget quizOptionWidget = new OptionWidget(context, question, optionClickedListener);
-            holder.quizLayout.addView(quizOptionWidget.getView());
+            if (RADIO_GROUP.name().equals(question.getQuestionView())) {
+                OptionWidget quizOptionWidget = new OptionWidget(context, question, optionClickedListener);
+                holder.quizLayout.addView(quizOptionWidget.getView());
+            } else if (TEXT_BOX.name().equals(question.getQuestionView())) {
+                EditTextWidget editTextWidget = new EditTextWidget(context, question, optionClickedListener);
+                holder.quizLayout.addView(editTextWidget.build());
+            }
         }
     }
 
@@ -71,11 +73,12 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder
 
     public static class QuizViewHolder extends RecyclerView.ViewHolder {
 
+        final TextView country;
         LinearLayout quizLayout;
         TextView question;
         TextView questionNo;
-        TextView section;
-        ImageView icon;
+        TextView state;
+
         MaterialButton countries;
 
         public QuizViewHolder(@NonNull View itemView) {
@@ -83,8 +86,8 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder
             quizLayout = itemView.findViewById(R.id.quiz_layout);
             question = itemView.findViewById(R.id.question);
             questionNo = itemView.findViewById(R.id.question_no);
-            section = itemView.findViewById(R.id.section);
-            icon = itemView.findViewById(R.id.icon);
+            state = itemView.findViewById(R.id.state);
+            country = itemView.findViewById(R.id.country);
             countries = itemView.findViewById(R.id.countries);
         }
     }

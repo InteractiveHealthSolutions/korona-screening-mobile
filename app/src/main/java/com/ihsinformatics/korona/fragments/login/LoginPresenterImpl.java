@@ -1,10 +1,42 @@
 package com.ihsinformatics.korona.fragments.login;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Looper;
+import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.ihsinformatics.korona.activities.LoginActivity;
+import com.ihsinformatics.korona.activities.SplashActivity;
 import com.ihsinformatics.korona.common.DevicePreferences;
+import com.ihsinformatics.korona.db.AppDatabase;
+import com.ihsinformatics.korona.model.FailureStatus;
 import com.ihsinformatics.korona.model.Language;
-import com.ihsinformatics.korona.network.ApiService;
+import com.ihsinformatics.korona.model.geocode.GeocodeResult;
+import com.ihsinformatics.korona.model.geocode.ReverseGeocodeResult;
+import com.ihsinformatics.korona.model.question.QuizResponse;
+import com.ihsinformatics.korona.network.ResponseListener;
+import com.ihsinformatics.korona.network.RestServices;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,27 +44,20 @@ import java.util.List;
 public class LoginPresenterImpl implements LoginContract.Presenter {
 
 
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 21;
+    public static final int REQUEST_LOCATION = 312;
     private Context context;
-    private ApiService apiService;
+    private RestServices restServices;
     private DevicePreferences devicePreferences;
+    private AppDatabase appdatabase;
     private LoginContract.View view;
 
-    public LoginPresenterImpl(Context context, ApiService apiService, DevicePreferences devicePreferences) {
-        this.context = context;
-        this.apiService = apiService;
+    public LoginPresenterImpl(RestServices restServices, DevicePreferences devicePreferences, AppDatabase appdatabase) {
+        this.restServices = restServices;
         this.devicePreferences = devicePreferences;
+        this.appdatabase = appdatabase;
     }
 
-    @Override
-    public void login(String username, String user) {
-        view.startMainActivity();
-
-    }
-
-    @Override
-    public void saveLanguage(Language language) {
-        devicePreferences.saveLanguage(language);
-    }
 
     @Override
     public void takeView(LoginContract.View view) {
@@ -49,25 +74,187 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
         return devicePreferences.getLanguage();
     }
 
+
     @Override
-    public List<Language> getLanguages() {
-        List<Language> languages = new ArrayList<>();
-        languages.add(new Language("English", "en"));
-        languages.add(new Language("اردو", "ur"));
-        languages.add(new Language("سنڌي", "sd"));
-        return languages;
+    public void getUserLocation(Activity activity) {
+        createLocationRequest(activity);
+    }
+
+    private void getLocationAddress(Location location) {
+        view.showLoading();
+        restServices.getLocationAddress(location, new ResponseListener.GeoCodeResponse() {
+            @Override
+            public void onSuccess(ReverseGeocodeResult response) {
+                List<GeocodeResult> results = response.getResults();
+                if (!results.isEmpty()) {
+                    devicePreferences.saveGeoCode(results.get(0));
+                    view.updateLocation(results.get(0));
+                    view.hideLoading();
+                }
+            }
+
+            @Override
+            public void onFailure(String message) {
+                view.showToast(message);
+            }
+        });
+    }
+
+
+    private void getMetaDataOnLocation(GeocodeResult geocodeResult) {
+        // TODO  RestServices.
+        view.showToast(geocodeResult.getRegion());
+    }
+
+
+    @Override
+    public void checkPermission(LoginActivity activity) {
+
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                    Manifest.permission.ACCESS_FINE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                view.showLocationReasonDialog();
+            } else {
+                requestPermission(activity);
+            }
+        } else {
+            // Permission has already been granted
+            getUserLocation(activity);
+        }
     }
 
     @Override
-    public Language getLanguageFromList(String name) {
-        Language languageValue = null;
-        for (Language language : getLanguages()) {
-            if (language.getLanguage().equals(name)) {
-                languageValue = language;
-                break;
-            }
-        }
-        return languageValue;
+    public void requestPermission(LoginActivity activity) {
+        ActivityCompat.requestPermissions(activity,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                MY_PERMISSIONS_REQUEST_LOCATION);
     }
+
+    @Override
+    public List<com.ihsinformatics.korona.db.entities.Location> getCountries() {
+        //appdatabase.getLocationDao().getLocationByCategory()
+        List<com.ihsinformatics.korona.db.entities.Location> locations = new ArrayList<>();
+        locations.add(new com.ihsinformatics.korona.db.entities.Location(1, "Pakistan"));
+        locations.add(new com.ihsinformatics.korona.db.entities.Location(2, "Australia"));
+        return locations;
+    }
+
+    @Override
+    public List<com.ihsinformatics.korona.db.entities.Location> getStates() {
+        return appdatabase.getLocationDao().getAllLocation();
+    }
+
+    @Override
+    public GeocodeResult getLastLocation() {
+        return devicePreferences.getGeoCode();
+    }
+
+    protected void createLocationRequest(final Activity activity) {
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(5000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+
+        SettingsClient client = LocationServices.getSettingsClient(activity);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+
+
+        task.addOnSuccessListener(activity, new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                fetchLocationDetails(activity);
+            }
+        });
+
+        task.addOnFailureListener(activity, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (e instanceof ResolvableApiException) {
+                    // Location settings are not satisfied, but this can be fixed
+                    // by showing the user a dialog.
+                    try {
+                        // Show the dialog by calling startResolutionForResult(),
+                        // and check the result in onActivityResult().
+                        ResolvableApiException resolvable = (ResolvableApiException) e;
+                        resolvable.startResolutionForResult(activity,
+                                REQUEST_LOCATION);
+                    } catch (IntentSender.SendIntentException sendEx) {
+                        // Ignore the error.
+                    }
+                }
+            }
+        });
+
+
+    }
+
+    @Override
+    public void fetchLocationDetails(Activity activity) {
+        FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(activity);
+        locationClient.getLastLocation().addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    getLocationAddress(location);
+                }
+            }
+        });
+
+
+    }
+
+    @Override
+    public void syncLocations() {
+        restServices.getLocations(new ResponseListener.LocationListener() {
+            @Override
+            public void onSuccess(List<com.ihsinformatics.korona.db.entities.Location> response) {
+                if (!response.isEmpty()) {
+                    appdatabase.getLocationDao().saveAllLocation(response);
+                    view.setAdapter(response);
+                    view.showLocationLayout();
+                } else {
+                    view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_LOCATION);
+                    view.showToast("No data found, Please refresh again");
+                }
+            }
+
+            @Override
+            public void onFailure(String message) {
+                view.showToast(message);
+                view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_LOCATION);
+            }
+        });
+    }
+
+    @Override
+    public com.ihsinformatics.korona.db.entities.Location getLocationFromName(String name) {
+        return appdatabase.getLocationDao().getLocationByName(name);
+    }
+
+    @Override
+    public void fetchForm(com.ihsinformatics.korona.db.entities.Location location) {
+        restServices.fetchForm(location.getLocationId(), new ResponseListener.FetchFormListener() {
+            @Override
+            public void onSuccess(QuizResponse response) {
+                view.startMainActivity(response);
+            }
+
+            @Override
+            public void onFailure(String message) {
+                view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_FORM);
+            }
+        });
+    }
+
 
 }

@@ -15,9 +15,12 @@ import com.google.android.material.button.MaterialButton;
 import com.ihsinformatics.korona.R;
 import com.ihsinformatics.korona.adapter.AdapterListener;
 import com.ihsinformatics.korona.databinding.WidgetQuizOptionBinding;
-import com.ihsinformatics.korona.model.Option;
+
+import com.ihsinformatics.korona.model.FormAnswer;
 import com.ihsinformatics.korona.model.Question;
 import com.ihsinformatics.korona.model.WidgetData;
+import com.ihsinformatics.korona.model.question.Option;
+import com.ihsinformatics.korona.model.question.Questions;
 
 
 public class OptionWidget extends Widget {
@@ -25,13 +28,13 @@ public class OptionWidget extends Widget {
 
     private Context context;
     private WidgetQuizOptionBinding binding;
-    private Question question;
+    private Questions question;
     private AdapterListener.OptionClickedListener optionClickedListener;
     private boolean isAnswered = false;
 
 
 
-    public OptionWidget(Context context, Question question, AdapterListener.OptionClickedListener optionClickedListener) {
+    public OptionWidget(Context context, Questions question, AdapterListener.OptionClickedListener optionClickedListener) {
         this.context = context;
         this.question = question;
         this.optionClickedListener = optionClickedListener;
@@ -55,7 +58,7 @@ public class OptionWidget extends Widget {
         RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(margin, 0, margin, 0);
         radioButton.setLayoutParams(layoutParams);
-        radioButton.setText(context.getResources().getString(option.getOptionValue().getTextResId()));
+        radioButton.setText(option.getDescription());
         radioButton.setAllCaps(false);
         radioButton.setGravity(Gravity.CENTER);
         radioButton.setCornerRadius(context.getResources().getDimensionPixelOffset(R.dimen.margin_very_large));
@@ -122,7 +125,7 @@ public class OptionWidget extends Widget {
                 isAnswered = true;
                 MaterialButton radioButton = (MaterialButton) view;
                 Option option = (Option) radioButton.getTag();
-                optionClickedListener.onOptionClicked(question, option);
+                optionClickedListener.onOptionClicked(new FormAnswer(question.getUuid(), option.getShortName()));
             }
         }
     }

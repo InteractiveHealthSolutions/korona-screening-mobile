@@ -32,7 +32,7 @@ public class SpinnerWidget {
         binding = DataBindingUtil.inflate(inflater, R.layout.spinner_widget, null, false);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, items);
         binding.spinner.setAdapter(adapter);
-        binding.title.setText(question);
+        //binding.title.setText(question);
     }
 
 

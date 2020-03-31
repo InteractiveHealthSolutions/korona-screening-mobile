@@ -1,4 +1,4 @@
-package com.ihsinformatics.korona.fragments.login;
+package com.ihsinformatics.korona.fragments.location.automatic;
 
 import android.app.Activity;
 
@@ -12,7 +12,7 @@ import com.ihsinformatics.korona.model.question.QuizResponse;
 import java.util.List;
 
 
-public interface LoginContract {
+public interface DetectLocationContract {
 
     interface View {
         void showToast(String Message);
@@ -22,6 +22,7 @@ public interface LoginContract {
         void showLoading();
 
         void hideLoading();
+
 
 
         void showLocationReasonDialog();
@@ -34,7 +35,7 @@ public interface LoginContract {
 
         void setAdapter(List<Location> response);
 
-        void showNoFormFound();
+        void showLocationError();
     }
 
 

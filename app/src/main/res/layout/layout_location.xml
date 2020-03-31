@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+
+        android:orientation="vertical">
+
+
+
+        <include
+            android:id="@+id/loading"
+            layout="@layout/layout_loading_login" />
+
+
+        <LinearLayout
+            android:id="@+id/layout_manual_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+            <include
+                android:id="@+id/country"
+                layout="@layout/spinner_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                ></include>
+
+            <include
+                android:id="@+id/state"
+                layout="@layout/spinner_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/countryLayout" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:padding="@dimen/_12sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="State/Province not listed?"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/requestNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:text="Request Now"
+                    android:textColor="@color/colorAccent" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next"
+                fontPath="fonts/Monserrat-Bold.otf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onLoginButtonClicked"
+                android:text="Continue"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/agreed" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

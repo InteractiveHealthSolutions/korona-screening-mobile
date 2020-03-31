@@ -6,9 +6,13 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RadioGroup;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.ViewCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.button.MaterialButton;
@@ -16,11 +20,13 @@ import com.ihsinformatics.korona.R;
 import com.ihsinformatics.korona.adapter.AdapterListener;
 import com.ihsinformatics.korona.databinding.WidgetQuizOptionBinding;
 
-import com.ihsinformatics.korona.model.FormAnswer;
-import com.ihsinformatics.korona.model.Question;
 import com.ihsinformatics.korona.model.WidgetData;
 import com.ihsinformatics.korona.model.question.Option;
 import com.ihsinformatics.korona.model.question.Questions;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 public class OptionWidget extends Widget {
@@ -31,7 +37,8 @@ public class OptionWidget extends Widget {
     private Questions question;
     private AdapterListener.OptionClickedListener optionClickedListener;
     private boolean isAnswered = false;
-
+    private MaterialButton biggestOption;
+    private int maxHeight = 0;
 
 
     public OptionWidget(Context context, Questions question, AdapterListener.OptionClickedListener optionClickedListener) {
@@ -44,33 +51,67 @@ public class OptionWidget extends Widget {
     private void init() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         binding = DataBindingUtil.inflate(inflater, R.layout.widget_quiz_option, null, false);
+        List<Option> options = question.getOptions();
+        Collections.sort(options, new Comparator<Option>() {
+            @Override
+            public int compare(Option option, Option t1) {
+                return option.getDescription().compareToIgnoreCase(t1.getDescription());
+            }
+        });
 
-        for (Option option : question.getOptions()) {
+        Collections.reverse(options);
+
+        for (Option option : options) {
             addButton(option);
+
+        }
+
+
+    }
+
+    private void updateHeight(int maxHeight) {
+        int margin = context.getResources().getDimensionPixelOffset(R.dimen.margin_small);
+
+        for (int i = 0; i < binding.parent.getChildCount(); i++) {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, maxHeight);
+            params.setMargins(margin, 0, margin, 0);
+            View view = binding.parent.getChildAt(i);
+            view.setLayoutParams(params);
+            view.requestLayout();
         }
     }
 
     private void addButton(Option option) {
         int padding = context.getResources().getDimensionPixelOffset(R.dimen._10sdp);
+        int height = context.getResources().getDimensionPixelOffset(R.dimen._100sdp);
         int margin = context.getResources().getDimensionPixelOffset(R.dimen.margin_small);
 
-        MaterialButton radioButton = new MaterialButton(context);
-        RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(margin, 0, margin, 0);
-        radioButton.setLayoutParams(layoutParams);
-        radioButton.setText(option.getDescription());
-        radioButton.setAllCaps(false);
-        radioButton.setGravity(Gravity.CENTER);
-        radioButton.setCornerRadius(context.getResources().getDimensionPixelOffset(R.dimen.margin_very_large));
-        radioButton.setBackgroundColor(context.getResources().getColor(R.color.white));
-        radioButton.setTextColor(context.getResources().getColor(R.color.colorAccent));
-        radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-        radioButton.setTypeface(ResourcesCompat.getFont(context, R.font.poppins_bold), Typeface.BOLD);
+      /*  MaterialButton button = new MaterialButton(context);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(margin, 0, margin, 0);
+        button.setLayoutParams(params);
 
-        radioButton.setPadding(padding, padding, padding, padding);
-        radioButton.setTag(option);
-        radioButton.setOnClickListener(new CustomClickListener());
-        binding.parent.addView(radioButton);
+        button.setText(option.getDescription());
+        button.setAllCaps(false);
+        button.setGravity(Gravity.CENTER);
+        button.setCornerRadius(context.getResources().getDimensionPixelOffset(R.dimen.margin_very_large));
+        button.setBackgroundColor(context.getResources().getColor(R.color.white));
+        button.setTextColor(context.getResources().getColor(R.color.colorAccent));
+        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+        button.setTypeface(ResourcesCompat.getFont(context, R.font.poppins_bold), Typeface.BOLD);
+        button.setPadding(padding, padding, padding, padding);
+        button.setTag(option);
+        button.setOnClickListener(new CustomClickListener());
+
+
+       */
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        MaterialButton button = (MaterialButton) inflater.inflate(R.layout.material_button, null);
+        button.setText(option.getDescription());
+        button.setTag(option);
+        button.setOnClickListener(new CustomClickListener());
+        binding.parent.addView(button);
+
     }
 
     @Override
@@ -121,11 +162,11 @@ public class OptionWidget extends Widget {
     private class CustomClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if(!isAnswered) {
+            if (!isAnswered) {
                 isAnswered = true;
                 MaterialButton radioButton = (MaterialButton) view;
                 Option option = (Option) radioButton.getTag();
-                optionClickedListener.onOptionClicked(new FormAnswer(question.getUuid(), option.getShortName()));
+                optionClickedListener.onOptionClicked(question, option);
             }
         }
     }

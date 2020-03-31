@@ -11,6 +11,8 @@ import com.ihsinformatics.korona.di.module.DatabaseModule;
 import com.ihsinformatics.korona.di.module.FormModule;
 import com.ihsinformatics.korona.di.module.NetworkModule;
 import com.ihsinformatics.korona.di.module.PresenterModule;
+import com.ihsinformatics.korona.fragments.location.automatic.DetectLocationFragment;
+import com.ihsinformatics.korona.fragments.location.manual.ManualLocationFragment;
 
 import javax.inject.Singleton;
 
@@ -27,4 +29,8 @@ public interface AppComponent {
     void inject(ResultActivity resultActivity);
 
     void inject(SplashActivity splashActivity);
+
+    void inject(ManualLocationFragment manualLocationFragment);
+
+    void inject(DetectLocationFragment detectLocationFragment);
 }

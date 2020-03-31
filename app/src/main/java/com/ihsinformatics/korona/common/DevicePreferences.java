@@ -23,6 +23,7 @@ public class DevicePreferences {
     public static final String LANGUAGE = "language";
     public static final String ACTIVE_USER = "activeUser";
     public static final String GEOCODE = "GEOCODE";
+    public static final String REQUEST_LOCATION_KEY = "REQUEST_LOCATION";
     SharedPreferences preferences;
 
     public DevicePreferences(SharedPreferences preferences) {
@@ -46,8 +47,13 @@ public class DevicePreferences {
     }
 
     private boolean getBoolean(String key) {
-        return preferences.getBoolean(key, true);
+        return preferences.getBoolean(key, false);
     }
+
+    private void putBoolean(String key, boolean data) {
+        preferences.edit().putBoolean(key, data).apply();
+    }
+
 
     public void saveLanguage(Language language) {
         String json = new Gson().toJson(language);
@@ -59,7 +65,6 @@ public class DevicePreferences {
         Language language = new Gson().fromJson(json, Language.class);
         return language;
     }
-
 
 
     public boolean isFirstTime() {
@@ -80,5 +85,13 @@ public class DevicePreferences {
         String json = preferences.getString(GEOCODE, "");
         GeocodeResult gecode = new Gson().fromJson(json, GeocodeResult.class);
         return gecode;
+    }
+
+    public void saveRequestLocationCompleted(boolean isRequestCompleted) {
+        putBoolean(REQUEST_LOCATION_KEY, isRequestCompleted);
+    }
+
+    public boolean isLocationRequestionCompleted() {
+        return getBoolean(REQUEST_LOCATION_KEY);
     }
 }

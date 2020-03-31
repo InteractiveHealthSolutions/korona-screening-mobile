@@ -51,7 +51,7 @@ public class QuizResponse {
     private String questionsOrder;
     @SerializedName("decision")
     @Expose
-    private Object decision;
+    private String decision;
     @SerializedName("decisionMap")
     @Expose
     private DecisionMap decisionMap;
@@ -174,11 +174,11 @@ public class QuizResponse {
         this.questionsOrder = questionsOrder;
     }
 
-    public Object getDecision() {
+    public String getDecision() {
         return decision;
     }
 
-    public void setDecision(Object decision) {
+    public void setDecision(String decision) {
         this.decision = decision;
     }
 

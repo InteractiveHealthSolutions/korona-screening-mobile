@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="switch_tabs">
-        <item>male</item>
-        <item>female</item>
-        <item>other</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
     </string-array>
     <string-array name="languague">
         <item>English</item>
@@ -45,4 +45,5 @@
         <item>UAE</item>
 
     </string-array>
+    <string-array name="gender">gender</string-array>
 </resources>

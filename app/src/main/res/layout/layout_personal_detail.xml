@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Section 1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Section 1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/question_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Questions :"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="4dp"
+                android:background="@color/white" />
+
+
+            <TextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="How old are you?"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/age"
+                style="@style/TextLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circular_shape_white"
+                android:digits="1234567890"
+                android:hint="Age"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                android:maxLength="3"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Please select your Gender"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13ssp" />
+
+
+            <lib.kingja.switchbutton.SwitchMultiButton
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_7sdp"
+                app:strokeRadius="@dimen/_12sdp"
+                app:strokeWidth="1dp"
+                app:selectedTab="-1"
+                app:selectedColor="@color/colorAccent"
+                app:textSize="@dimen/_12ssp"
+                app:switchTabs="@array/switch_tabs"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Next"
+                    android:textAllCaps="false"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/colorAccent"
+                    app:cornerRadius="20dp"
+                    app:iconTint="@color/colorPrimaryDark" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

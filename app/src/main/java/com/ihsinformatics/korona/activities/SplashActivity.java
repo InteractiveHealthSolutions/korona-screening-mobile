@@ -46,7 +46,8 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
     private void startLoginActivity() {
         Intent intent = new Intent(this,LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

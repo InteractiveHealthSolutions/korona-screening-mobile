@@ -12,6 +12,6 @@ public interface AdapterListener {
 
         public void onInfoClicked();
 
-        public void onOptionClicked(FormAnswer formAnswer);
+        public void onOptionClicked(Questions question, Option option);
     }
 }

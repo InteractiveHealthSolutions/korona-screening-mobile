@@ -13,17 +13,24 @@ public interface FormContract {
 
     public interface View {
 
-        void showResult(Integer totalScore);
+        void showResult(String result);
 
         String getStringResource(int resId);
+
+        void moveAdapterToPosition(int arrayPosition);
     }
 
     public interface Presenter extends BasePresenter<View> {
         List<Questions> getQuestions(Intent intent);
         Location getLocation();
+        int getFirstQuestionPoistion();
 
-        void updateScore(FormAnswer answer);
+        void updateScore(FormAnswer answer,Integer score);
 
         void sendResult();
+
+        int getPositionFromQuesionId(Integer nextQuestion);
+
+        String getActivityDescription();
     }
 }

@@ -42,13 +42,15 @@ public class Questions {
     private Integer questionScore;
     @SerializedName("nextQuestion")
     @Expose
-    private Object nextQuestion;
+    private Integer nextQuestion;
     @SerializedName("nextQuestionCriteriaRegex")
     @Expose
-    private Object nextQuestionCriteriaRegex;
+    private String nextQuestionCriteriaRegex;
     @SerializedName("options")
     @Expose
     private List<Option> options = null;
+
+
 
     public String getUuid() {
         return uuid;
@@ -138,19 +140,19 @@ public class Questions {
         this.questionScore = questionScore;
     }
 
-    public Object getNextQuestion() {
+    public Integer getNextQuestion() {
         return nextQuestion;
     }
 
-    public void setNextQuestion(Object nextQuestion) {
+    public void setNextQuestion(Integer nextQuestion) {
         this.nextQuestion = nextQuestion;
     }
 
-    public Object getNextQuestionCriteriaRegex() {
+    public String getNextQuestionCriteriaRegex() {
         return nextQuestionCriteriaRegex;
     }
 
-    public void setNextQuestionCriteriaRegex(Object nextQuestionCriteriaRegex) {
+    public void setNextQuestionCriteriaRegex(String nextQuestionCriteriaRegex) {
         this.nextQuestionCriteriaRegex = nextQuestionCriteriaRegex;
     }
 

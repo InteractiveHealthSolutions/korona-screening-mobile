@@ -30,123 +30,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.3" />
+                app:layout_constraintGuide_percent="0.23" />
 
 
-            <LinearLayout
-                android:id="@+id/layout_loading"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView4"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.54"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
-                >
-                <com.github.ybq.android.spinkit.SpinKitView
-                    android:id="@+id/loadingView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:padding="@dimen/_8sdp"
-                    style="@style/SpinKitView.Large.Circle"
-                    app:SpinKit_Color="@color/colorAccent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2">
-                </com.github.ybq.android.spinkit.SpinKitView>
-
-                <TextView
-                    android:id="@+id/loading_text"
-                    android:layout_width="96dp"
-                    android:layout_height="wrap_content"
-                    android:text="Please wait..."
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loadingView" />
-
-                <ImageView
-                    android:id="@+id/refresh"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:visibility="invisible"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loading_text"
-                    app:srcCompat="@drawable/ic_refresh" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2">
-                <!-- <include
-                    android:id="@+id/country"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/spinner_widget"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:padding="@dimen/_8sdp"
-                    >
-                </include>-->
-
-                <include
-                    android:id="@+id/state"
-                    layout="@layout/spinner_widget"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:padding="@dimen/_8sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/country" />
-
-
-                <CheckBox
-                    android:id="@+id/agreed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/state"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:gravity="center"
-                    android:text="@string/agreed_with_the_terms_and_condition"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/state" />
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/login_button"
-                    fontPath="fonts/Monserrat-Bold.otf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="onLoginButtonClicked"
-                    android:text="@string/go"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/colorAccent"
-                    app:cornerRadius="20dp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/agreed" />
-
-            </LinearLayout>
+                tools:showIn="@layout/activity_login" />
 
             <TextView
                 android:id="@+id/textView"
@@ -154,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:gravity="center"
-                android:text="COVID-19"
+                android:text="Outbreak Advisor"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_24ssp"
@@ -164,15 +60,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/guideline1" />
 
 
-
-
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:text="Risk Assessment Tool"
+                android:text="Self Assessment Tool"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -184,24 +78,26 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" | Copyrights 2020  |  "
+                android:fontFamily="@font/poppins"
+                android:text="Copyrights 2020  |  "
                 android:textColor="@android:color/white"
                 android:textColorHighlight="@color/white"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView3"
+                app:layout_constraintEnd_toStartOf="@+id/ihs"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/ihs"
                 fontPath="fonts/Monserrat-Bold.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:autoLink="web"
+
+                android:fontFamily="@font/poppins"
                 android:linksClickable="true"
-                android:text="IHS"
+
                 android:textColor="@color/colorAccent"
                 android:textColorLink="@color/colorAccent"
                 android:textSize="@dimen/_10ssp"

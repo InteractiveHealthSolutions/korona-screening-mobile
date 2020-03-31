@@ -1,4 +1,4 @@
-package com.ihsinformatics.korona.fragments.login;
+package com.ihsinformatics.korona.fragments.location.manual;
 
 import android.Manifest;
 import android.app.Activity;
@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Looper;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -16,9 +14,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
@@ -26,13 +22,12 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.gson.Gson;
 import com.ihsinformatics.korona.activities.LoginActivity;
-import com.ihsinformatics.korona.activities.SplashActivity;
 import com.ihsinformatics.korona.common.DevicePreferences;
 import com.ihsinformatics.korona.common.IDGenerator;
 import com.ihsinformatics.korona.common.Utils;
 import com.ihsinformatics.korona.db.AppDatabase;
+import com.ihsinformatics.korona.fragments.RequestFragment;
 import com.ihsinformatics.korona.model.BaseResponse;
 import com.ihsinformatics.korona.model.FailureStatus;
 import com.ihsinformatics.korona.model.Language;
@@ -45,31 +40,71 @@ import com.ihsinformatics.korona.network.RestServices;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class LoginPresenterImpl implements LoginContract.Presenter {
+public class ManualLocationPresenterImpl implements ManualLocationContract.Presenter {
 
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 21;
     public static final int REQUEST_LOCATION = 312;
+    public static final String STATE_CATEGORY_UUID = "52a88e1f-6deb-11ea-9ec6-40b034969541";
+    public static final String COUNTRY_CATEGORY_UUID = "f85916ac-6de7-11ea-9ec6-40b034969541";
     private Context context;
     private RestServices restServices;
     private DevicePreferences devicePreferences;
     private AppDatabase appdatabase;
-    private LoginContract.View view;
+    private ManualLocationContract.View view;
+    private String countriesJson;
 
-    public LoginPresenterImpl(RestServices restServices, DevicePreferences devicePreferences, AppDatabase appdatabase) {
+    public ManualLocationPresenterImpl(RestServices restServices, DevicePreferences devicePreferences, AppDatabase appdatabase) {
         this.restServices = restServices;
         this.devicePreferences = devicePreferences;
         this.appdatabase = appdatabase;
+
+    }
+
+    public void createLocationsJson(InputStream inputStream) {
+
+        Writer writer = new StringWriter();
+        char[] buffer = new char[1024];
+        try {
+            Reader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        countriesJson = writer.toString();
     }
 
 
     @Override
-    public void takeView(LoginContract.View view) {
+    public void takeView(ManualLocationContract.View view) {
         this.view = view;
+
     }
+
 
     @Override
     public void dropView() {
@@ -102,6 +137,7 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
 
             @Override
             public void onFailure(String message) {
+                view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_LOCATION);
                 view.showToast(message);
             }
         });
@@ -145,12 +181,8 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
     }
 
     @Override
-    public List<com.ihsinformatics.korona.db.entities.Location> getCountries() {
-        //appdatabase.getLocationDao().getLocationByCategory()
-        List<com.ihsinformatics.korona.db.entities.Location> locations = new ArrayList<>();
-        locations.add(new com.ihsinformatics.korona.db.entities.Location(1, "Pakistan"));
-        locations.add(new com.ihsinformatics.korona.db.entities.Location(2, "Australia"));
-        return locations;
+    public String getCountriesJSON() {
+        return countriesJson;
     }
 
     @Override
@@ -226,8 +258,18 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
             @Override
             public void onSuccess(List<com.ihsinformatics.korona.db.entities.Location> response) {
                 if (!response.isEmpty()) {
-                    appdatabase.getLocationDao().saveAllLocation(response);
-                    view.setAdapter(response);
+                    List<com.ihsinformatics.korona.db.entities.Location> filtered = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        filtered = response.stream().filter(location -> !location.isVoided()).collect(Collectors.toList());
+                    } else {
+                        filtered = getFilteredList(response);
+                    }
+                    appdatabase.getLocationDao().saveAllLocation(filtered);
+                    List<com.ihsinformatics.korona.db.entities.Location> states = appdatabase.getLocationDao().getLocationByCategory(STATE_CATEGORY_UUID);
+                    List<com.ihsinformatics.korona.db.entities.Location> countries = appdatabase.getLocationDao().getLocationByCategory(COUNTRY_CATEGORY_UUID);
+                    view.setAdapter(countries, states);
+
+
                     view.showLocationLayout();
                 } else {
                     view.showToast("No data found, Please refresh again");
@@ -243,6 +285,19 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
         });
     }
 
+    private List<com.ihsinformatics.korona.db.entities.Location> getFilteredList(List<com.ihsinformatics.korona.db.entities.Location> response) {
+        List<com.ihsinformatics.korona.db.entities.Location> filteredLocation = new ArrayList<>();
+
+        for (com.ihsinformatics.korona.db.entities.Location location : response) {
+            if (!location.isVoided()) {
+                filteredLocation.add(location);
+            }
+
+        }
+
+        return filteredLocation;
+    }
+
     @Override
     public com.ihsinformatics.korona.db.entities.Location getLocationFromName(String name) {
         return appdatabase.getLocationDao().getLocationByName(name);
@@ -250,82 +305,70 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
 
     @Override
     public void fetchForm(com.ihsinformatics.korona.db.entities.Location location) {
-        if (location.getLocationId() > 0) {
-            restServices.fetchForm(location.getLocationId(), new ResponseListener.FetchFormListener() {
-                @Override
-                public void onSuccess(QuizResponse response) {
-                    view.startMainActivity(response);
-                }
+        restServices.fetchForm(location.getLocationId(), new ResponseListener.FetchFormListener() {
+            @Override
+            public void onSuccess(QuizResponse response) {
+                view.startMainActivity(response);
+            }
 
-                @Override
-                public void onFailure(String message) {
-                    view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_FORM);
-                }
+            @Override
+            public void onFailure(String message) {
+                view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_FORM);
+            }
 
-                @Override
-                public void responseCode(int code) {
-                    if (code == 404) {
-                        view.showNoFormFound();
-                    }
-                }
-            });
-        } else {
-            restServices.fetchFormByLocationName(location.getLocationName(), new ResponseListener.FetchFormListener() {
-                @Override
-                public void onSuccess(QuizResponse response) {
-                    view.startMainActivity(response);
-                }
+            @Override
+            public void responseCode(int code) {
 
-                @Override
-                public void onFailure(String message) {
-                    view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_FORM);
-                }
-
-                @Override
-                public void responseCode(int code) {
-                    if (code == 404) {
-                     view.showNoFormFound();
-                    }
-                }
-            });
-        }
+            }
+        });
     }
 
     @Override
-    public void submitFormRequestForm(GeocodeResult geocodeResult) {
-        if (geocodeResult != null) {
-            JSONObject object = new JSONObject();
-            try {
+    public void submitFormRequestForm(String country, String state) {
 
-                JSONObject data = new JSONObject();
-                data.put("country", geocodeResult.getCountry());
-                data.put("state", geocodeResult.getRegion());
-                object.put("data", data.toString());
-                object.put("formDate", Utils.getCurrentDBDate());
-                JSONObject formType = new JSONObject();
+        JSONObject object = new JSONObject();
+        try {
 
-                formType.put("formTypeId", 2);
-                object.put("formType", formType);
-                object.put("referenceId", IDGenerator.getEncodedID());
+            JSONObject data = new JSONObject();
+            data.put("country", country);
+            data.put("state", state);
+            object.put("data", data.toString());
+            object.put("formDate", Utils.getCurrentDBDate());
+            JSONObject formType = new JSONObject();
+
+            formType.put("formTypeId", 2);
+            object.put("formType", formType);
+            object.put("referenceId", IDGenerator.getEncodedID());
 
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        restServices.submitForm(object, new ResponseListener.BaseListener() {
+            @Override
+            public void onSuccess(BaseResponse response) {
+                view.showToast("Thank you! Your request has been submitted.");
+                devicePreferences.saveRequestLocationCompleted(true);
             }
 
-            restServices.submitForm(object, new ResponseListener.BaseListener() {
-                @Override
-                public void onSuccess(BaseResponse response) {
-                    view.showToast("Thank you! Your request has been submitted.");
-                }
+            @Override
+            public void onFailure(String message) {
+                view.showToast("Sorry! something went wrong");
+            }
+        });
 
-                @Override
-                public void onFailure(String message) {
-                    view.showToast("Thank you!");
-                }
-            });
 
-        }
+    }
+
+    @Override
+    public List<com.ihsinformatics.korona.db.entities.Location> getLocationsByParent(Integer parentLocationId) {
+        return appdatabase.getLocationDao().getLocationByParentId(parentLocationId);
+    }
+
+    @Override
+    public boolean isLocationRequestSubmitted() {
+        return devicePreferences.isLocationRequestionCompleted();
     }
 
 

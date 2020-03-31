@@ -6,11 +6,14 @@ import com.ihsinformatics.korona.model.Location;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ResultPresenterImpl implements ResultContract.Presenter {
 
     private ResultContract.View view;
 
+    private final String numberRegex = "";
 
     @Override
     public void takeView(ResultContract.View view) {
@@ -51,6 +54,17 @@ public class ResultPresenterImpl implements ResultContract.Presenter {
                 showHighRiskUI(score);
                 break;
         }
+    }
+
+    @Override
+    public void getPhoneNumbers(String result) {
+        Pattern pattern = Pattern.compile("(\\(+61\\)|\\+61|\\(0[1-9]\\)|0[1-9])?( ?-?[0-9]){3,10}");
+        Matcher matcher = pattern.matcher(result);
+        List<String> numbers = new ArrayList<>();
+        if (matcher.find()) {
+            numbers.add(matcher.group(0));
+        }
+        view.showContact(numbers);
     }
 
     private void showHighRiskUI(int score) {

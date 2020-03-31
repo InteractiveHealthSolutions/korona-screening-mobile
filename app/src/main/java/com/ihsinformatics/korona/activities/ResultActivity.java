@@ -36,9 +36,10 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
         ((App) getApplication()).getComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_result);
         presenter.takeView(this);
-        int score = getIntent().getIntExtra("score", 0);
-        binding.score.setText("" + score);
-        presenter.setScore(score);
+        String result = getIntent().getStringExtra("result");
+        setResultDetail(result);
+        presenter.getPhoneNumbers(result);
+        binding.instruction.setOnClickListener(new InstructionListener());
     }
 
     @Override
@@ -59,7 +60,7 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
     @Override
     public void setColor(int resId) {
 
-        binding.score.setTextColor(getResources().getColor(resId));
+        //binding.score.setTextColor(getResources().getColor(resId));
         binding.status.setTextColor(getResources().getColor(resId));
     }
 
@@ -75,7 +76,7 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
             itemBinding.location.setTag(location.getAddress());
             itemBinding.call.setOnClickListener(new CallListener());
             itemBinding.location.setOnClickListener(new AddressListener());
-            CardView root = (CardView)  itemBinding.getRoot();
+            CardView root = (CardView) itemBinding.getRoot();
             LinearLayout.LayoutParams cardViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             cardViewParams.setMargins(0, margin, 0, margin);
             root.setLayoutParams(cardViewParams);
@@ -95,7 +96,7 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
             itemBinding.getRoot().setTag(contact);
             itemBinding.getRoot().setOnClickListener(new CallListener());
 
-            CardView root = (CardView)  itemBinding.getRoot();
+            CardView root = (CardView) itemBinding.getRoot();
             LinearLayout.LayoutParams cardViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             cardViewParams.setMargins(margin, 0, margin, 0);
             root.setLayoutParams(cardViewParams);
@@ -119,7 +120,7 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
     public void showHighRiskDetails() {
         binding.layoutContactRoot.setVisibility(View.VISIBLE);
         binding.instruction.setVisibility(View.VISIBLE);
-        binding.instruction.setOnClickListener(new InstructionListener());
+
         binding.layoutDetails.setVisibility(View.VISIBLE);
     }
 
@@ -150,7 +151,12 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
     private class InstructionListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(ResultActivity.this, InstructionActivity.class));
+            //  startActivity(new Intent(ResultActivity.this, InstructionActivity.class));
+            Intent intent = new Intent(ResultActivity.this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         }
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">COVID App</string>
+    <string name="app_name">Outbreak Advisor</string>
     <string name="go">Begin Assessment</string>
     <string name="sec_1_question_1">Have you travelled from Mainland China/Iran/South Korea/ Italy / other high burden country of COVID-19 infection in the last 14 days?</string>
     <string name="sec_1_question_2">Have you had close contact with any person , who has returned from Mainland China/Iran/South Korea/ Italy / other high burden country of COVID-19 infection in the last 14 days?</string>
@@ -14,7 +14,8 @@
     <string name="no">No</string>
     <string name="question">Question</string>
     <string name="section">Section</string>
-    <string name="login_info">This app will anonymously record your answers to the self-assessment questions. No personal or identifiable data about you is requested or recorded</string>
+    <string name="terms_conditions">I accept the </string>
+    <string name="login_info">* This app will anonymously collect the data you provide. No personally identifiable information will be requested or collected. The data may be analyzed or shared with third parties for research purposes. </string>
     <string name="agreed_with_the_terms_and_condition">I agree with the Terms and condition</string>
     <string name="your_score">Your Risk Score</string>
     <string name="score_detail">Your Risk score is %d you have a chance for development of COVID -19. Further, you need medical assistance, please visit the following designated hospitals for further medical workup.</string>
@@ -45,6 +46,13 @@
     <string name="error_term_condition"><![CDATA[Please Accept the Term & conditions]]></string>
     <string name="high_burden_countries">High Burden Countries</string>
     <string name="ok">ok</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="terms_and_conditions"><u> Terms and Conditions</u></string>
+    <string name="disclaimer"><u>Disclaimer</u></string>
+    <string name="disclaimer_details">This is a screening tool and not a diagnostic test. Please consult a doctor for diagnosis.</string>
+
 
 
 </resources>

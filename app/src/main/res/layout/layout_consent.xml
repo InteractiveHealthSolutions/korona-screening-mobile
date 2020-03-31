@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/consent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <include
+            android:id="@+id/loading"
+            android:visibility="gone"
+            layout="@layout/layout_loading_login" />
+
+        <LinearLayout
+            android:id="@+id/layout_no_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:drawableTop="@drawable/ic_cold"
+                android:text="Sorry! Assessment tool is not available in your region"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_12ssp"
+                android:gravity="center"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/manual_location"
+                fontPath="fonts/Monserrat-Bold.otf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I'll Select Location Manually"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="20dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_consent_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@string/disclaimer"
+
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:selectAllOnFocus="false"
+                android:linksClickable="false"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:autoLink="all"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@string/disclaimer_details"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                >
+            <CheckBox
+                android:id="@+id/agreed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins"
+                android:text="@string/terms_conditions"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:buttonTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/state" />
+
+                <TextView
+                    android:id="@+id/terms_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center_vertical"
+                    android:text="@string/terms_and_conditions"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10ssp"
+                    android:selectAllOnFocus="false"
+                    android:linksClickable="false"
+                    android:autoLink="all"
+                    />
+            </LinearLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_button"
+                fontPath="fonts/Monserrat-Bold.otf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/go"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="20dp"
+                 />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -42,6 +42,13 @@ public class Location {
     @SerializedName("categoryUuid")
     @Expose
     private String categoryUuid;
+    @SerializedName("parentLocationId")
+    @Expose
+    private Integer parentLocationId;
+    @SerializedName("voided")
+    @Expose
+    @Ignore
+    private boolean isVoided;
 
     public Integer getLocationId() {
         return locationId;
@@ -79,8 +86,25 @@ public class Location {
         return categoryUuid;
     }
 
+
+    public boolean isVoided() {
+        return isVoided;
+    }
+
+    public void setVoided(boolean voided) {
+        isVoided = voided;
+    }
+
     public void setCategoryUuid(String categoryUuid) {
         this.categoryUuid = categoryUuid;
+    }
+
+    public Integer getParentLocationId() {
+        return parentLocationId;
+    }
+
+    public void setParentLocationId(Integer parentLocationId) {
+        this.parentLocationId = parentLocationId;
     }
 
     @Override

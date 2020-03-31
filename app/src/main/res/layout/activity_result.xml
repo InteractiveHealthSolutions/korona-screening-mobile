@@ -20,7 +20,7 @@
                 android:id="@+id/state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/your_score"
+                android:text="Result"
                 android:textColor="@color/white"
                 android:textSize="33sp"
                 android:textStyle="bold" />
@@ -50,16 +50,15 @@
                 android:layout_gravity="center"
                 android:src="@drawable/circular_shape_white" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/score"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:layout_gravity="center"
                 android:gravity="center|center_vertical"
-                android:text="1"
-                android:textSize="@dimen/_50sdp"
-                android:textStyle="bold" />
+                android:src="@drawable/ic_result"
+                />
         </FrameLayout>
 
         <androidx.cardview.widget.CardView
@@ -79,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:visibility="gone"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingTop="@dimen/_4sdp"
                 android:paddingRight="@dimen/_10sdp"
@@ -93,22 +93,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/result_details"
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_12sdp">
+
+                    <TextView
+                        android:id="@+id/result_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                       android:padding="@dimen/_20sdp"
+                        android:gravity="center"
+                        android:text="Some Details about Corona Virus"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_size_large" />
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/layout_contacts"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Some Details about Corona Virus"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/instruction"
+                    fontPath="fonts/Monserrat-Bold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Back to Home"
+                    app:icon="@drawable/ic_next"
+                    app:iconSize="@dimen/_12sdp"
+                    app:iconGravity="textStart"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_large" />
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/colorAccent"
+                    app:cornerRadius="20dp"
+ />
+
 
                 <include
                     android:id="@+id/precaution"
@@ -137,43 +175,9 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/_8sdp" />
 
-                    <LinearLayout
-                        android:id="@+id/layout_contacts"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:gravity="center"
-                        android:orientation="horizontal">
 
-                    </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="@dimen/_12sdp">
 
-                        <TextView
-                            android:id="@+id/instruction"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:paddingLeft="@dimen/_20sdp"
-                            android:paddingTop="@dimen/_4sdp"
-                            android:paddingRight="@dimen/_20sdp"
-                            android:paddingBottom="@dimen/_4sdp"
-                            android:gravity="center_vertical"
-                            android:text="@string/instruction"
-                            android:textStyle="bold"
-                            android:drawablePadding="@dimen/_8sdp"
-                            android:includeFontPadding="true"
-                            android:drawableRight="@drawable/ic_action_name"
-                            />
-
-                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
             </LinearLayout>

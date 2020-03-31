@@ -25,4 +25,7 @@ public interface ApiService {
 
     @GET(Endpoints.FETCH_FORM)
     Call<QuizResponse> fetchForm(@Header("Authorization") String auth,@Path(value = "id") Integer id);
+
+    @GET(Endpoints.FETCH_FORM_BY_NAME)
+    Call<QuizResponse> fetchFormByLocationName(@Header("Authorization") String auth,@Path(value = "name") String name);
 }

@@ -53,7 +53,6 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder
         holder.question.setText(question.getQuestion().getDescription());
         holder.state.setText(location.getLocationName());
         holder.country.setText(location.getCountry());
-        holder.questionNo.setText(context.getString(R.string.question) + " " + (position + 1) + "/" + questions.size());
 
         if (holder.quizLayout.getChildCount() == 0) {
             if (RADIO_GROUP.name().equals(question.getQuestionView())) {

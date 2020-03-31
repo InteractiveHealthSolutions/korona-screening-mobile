@@ -39,6 +39,12 @@ public interface LocationDao {
     @Query("Select * from location where locationName = :name ")
     Location getLocationByName(String name);
 
+    @Query("Select * from location where categoryUuid = :categoryUUID ")
+    List<Location> getLocationByCategory(String categoryUUID);
+
+    @Query("Select * from location where parentLocationId = :parentLocationId ")
+    List<Location> getLocationByParentId(Integer parentLocationId);
+
     /*@Query("Select * from attributes where contextId = :locationId and attributeType = :attributeType")
     AttributeResult getLocationAttribute(Integer locationId, AttributeType attributeType);*/
 

@@ -15,9 +15,13 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "SERVER_URL", '"http://18.141.27.134:8080/korona-screening/api/"'
+            buildConfigField "String", "USER_NAME", '"admin"'
+            buildConfigField "String", "PASSWORD", '"admin123"'
         }
         release {
-            buildConfigField "String", "SERVER_URL", '"http://18.141.27.134:8080/korona-screening/api/"'
+            buildConfigField "String", "SERVER_URL", '"http://ks.ihsinformatics.com/korona-screening/api/"'
+            buildConfigField "String", "USER_NAME", '"admin"'
+            buildConfigField "String", "PASSWORD", '"AYmLLHS*w?KV"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -27,8 +31,8 @@ android {
         enabled = true
     }
     compileOptions {
-        sourceCompatibility = 1.7
-        targetCompatibility = 1.7
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 }
 

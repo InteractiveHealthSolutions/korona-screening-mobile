@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+
+    <LinearLayout
+        android:id="@+id/layout_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+        <include
+            android:id="@+id/loading"
+            layout="@layout/layout_loading_login" />
+
+
+        <LinearLayout
+            android:id="@+id/countryLayout"
+            android:layout_width="match_parent"
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Country (Auto-detected)"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp" />
+
+
+
+            <TextView
+                android:id="@+id/country_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Australia"
+                android:gravity="center"
+                android:padding="@dimen/_3sdp"
+                android:background="@drawable/circular_shape_white"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="State (Auto-detected)"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp" />
+
+            <TextView
+                android:id="@+id/state_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Victoria"
+                android:padding="@dimen/_3sdp"
+                android:background="@drawable/circular_shape_white"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_14ssp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/next_other"
+                    fontPath="fonts/Monserrat-Bold.otf"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Yes! You are right"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/colorAccent"
+                    app:cornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/manual_location_other"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/manual_location_other"
+                    fontPath="fonts/Monserrat-Bold.otf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:onClick="onLoginButtonClicked"
+                    android:text="No! I'll Select my location"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/colorAccent"
+                    app:cornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/next_other"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/next_other"
+                    app:layout_constraintTop_toTopOf="@+id/next_other" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not able to detect your location "
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/detect_location"
+                fontPath="fonts/Monserrat-Bold.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onLoginButtonClicked"
+                android:text="Try Again"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_refresh" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_6sdp"
+                android:text="OR"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/manual_location"
+                fontPath="fonts/Monserrat-Bold.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onLoginButtonClicked"
+                android:text="I'll Select my location"
+
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="20dp" />
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</layout>

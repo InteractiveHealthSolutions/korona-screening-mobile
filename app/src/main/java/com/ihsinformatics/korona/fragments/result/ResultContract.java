@@ -33,5 +33,7 @@ public interface ResultContract {
     interface Presenter extends BasePresenter<View> {
 
         void setScore(int score);
+
+        void getPhoneNumbers(String result);
     }
 }

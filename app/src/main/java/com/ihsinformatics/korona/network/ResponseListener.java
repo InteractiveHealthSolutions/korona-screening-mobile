@@ -18,6 +18,7 @@ public interface ResponseListener {
     public interface LocationListener {
         public void onSuccess(List<Location> response);
         public void onFailure(String message);
+
     }
 
     public interface BaseListener {
@@ -28,5 +29,6 @@ public interface ResponseListener {
     public interface FetchFormListener {
         public void onSuccess(QuizResponse response);
         public void onFailure(String message);
+        public void responseCode(int code);
     }
 }

@@ -1,4 +1,4 @@
-package com.ihsinformatics.korona.fragments.login;
+package com.ihsinformatics.korona.fragments.location.automatic;
 
 import android.Manifest;
 import android.app.Activity;
@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Looper;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -16,9 +14,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
@@ -26,9 +22,7 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.gson.Gson;
 import com.ihsinformatics.korona.activities.LoginActivity;
-import com.ihsinformatics.korona.activities.SplashActivity;
 import com.ihsinformatics.korona.common.DevicePreferences;
 import com.ihsinformatics.korona.common.IDGenerator;
 import com.ihsinformatics.korona.common.Utils;
@@ -48,7 +42,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginPresenterImpl implements LoginContract.Presenter {
+public class DetectLocationPresenterImpl implements DetectLocationContract.Presenter {
 
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 21;
@@ -57,9 +51,9 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
     private RestServices restServices;
     private DevicePreferences devicePreferences;
     private AppDatabase appdatabase;
-    private LoginContract.View view;
+    private DetectLocationContract.View view;
 
-    public LoginPresenterImpl(RestServices restServices, DevicePreferences devicePreferences, AppDatabase appdatabase) {
+    public DetectLocationPresenterImpl(RestServices restServices, DevicePreferences devicePreferences, AppDatabase appdatabase) {
         this.restServices = restServices;
         this.devicePreferences = devicePreferences;
         this.appdatabase = appdatabase;
@@ -67,7 +61,7 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
 
 
     @Override
-    public void takeView(LoginContract.View view) {
+    public void takeView(DetectLocationContract.View view) {
         this.view = view;
     }
 
@@ -97,11 +91,14 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
                     devicePreferences.saveGeoCode(results.get(0));
                     view.updateLocation(results.get(0));
                     view.hideLoading();
+                } else {
+                    view.showLocationError();
                 }
             }
 
             @Override
             public void onFailure(String message) {
+                view.showLocationError();
                 view.showToast(message);
             }
         });
@@ -148,8 +145,8 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
     public List<com.ihsinformatics.korona.db.entities.Location> getCountries() {
         //appdatabase.getLocationDao().getLocationByCategory()
         List<com.ihsinformatics.korona.db.entities.Location> locations = new ArrayList<>();
-        locations.add(new com.ihsinformatics.korona.db.entities.Location(1, "Pakistan"));
-        locations.add(new com.ihsinformatics.korona.db.entities.Location(2, "Australia"));
+        //locations.add(new com.ihsinformatics.korona.db.entities.Location(1, "Pakistan"));
+        locations.add(new com.ihsinformatics.korona.db.entities.Location(1, "Australia"));
         return locations;
     }
 
@@ -214,6 +211,9 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
                 if (location != null) {
                     getLocationAddress(location);
                 }
+                else {
+                    view.showLocationError();
+                }
             }
         });
 
@@ -250,45 +250,22 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
 
     @Override
     public void fetchForm(com.ihsinformatics.korona.db.entities.Location location) {
-        if (location.getLocationId() > 0) {
-            restServices.fetchForm(location.getLocationId(), new ResponseListener.FetchFormListener() {
-                @Override
-                public void onSuccess(QuizResponse response) {
-                    view.startMainActivity(response);
-                }
+        restServices.fetchForm(location.getLocationId(), new ResponseListener.FetchFormListener() {
+            @Override
+            public void onSuccess(QuizResponse response) {
+                view.startMainActivity(response);
+            }
 
-                @Override
-                public void onFailure(String message) {
-                    view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_FORM);
-                }
+            @Override
+            public void onFailure(String message) {
+                view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_FORM);
+            }
 
-                @Override
-                public void responseCode(int code) {
-                    if (code == 404) {
-                        view.showNoFormFound();
-                    }
-                }
-            });
-        } else {
-            restServices.fetchFormByLocationName(location.getLocationName(), new ResponseListener.FetchFormListener() {
-                @Override
-                public void onSuccess(QuizResponse response) {
-                    view.startMainActivity(response);
-                }
+            @Override
+            public void responseCode(int code) {
 
-                @Override
-                public void onFailure(String message) {
-                    view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_FORM);
-                }
-
-                @Override
-                public void responseCode(int code) {
-                    if (code == 404) {
-                     view.showNoFormFound();
-                    }
-                }
-            });
-        }
+            }
+        });
     }
 
     @Override

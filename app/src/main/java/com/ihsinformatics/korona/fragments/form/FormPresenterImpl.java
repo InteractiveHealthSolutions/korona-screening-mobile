@@ -29,7 +29,6 @@ public class FormPresenterImpl implements FormContract.Presenter {
     private FormContract.View view;
     private List<FormAnswer> formAnswers = new ArrayList<>();
     private Integer totalScore = 0;
-    private int lastSection = 0;
     private RestServices restServices;
     private QuizResponse quizResponse;
 
@@ -56,8 +55,9 @@ public class FormPresenterImpl implements FormContract.Presenter {
 
 
     @Override
-    public void updateScore(FormAnswer forAnswer) {
+    public void updateScore(FormAnswer forAnswer, Integer score) {
         formAnswers.add(forAnswer);
+        totalScore += score;
     }
 
     @Override
@@ -69,8 +69,10 @@ public class FormPresenterImpl implements FormContract.Presenter {
             data.put("total_score", totalScore);
             object.put("data", data.toString());
             object.put("formDate", Utils.getCurrentDBDate());
+            object.put("location", new JSONObject(new Gson().toJson(quizResponse.getLocation())));
             JSONObject formType = new JSONObject();
             formType.put("formTypeId", 1);
+            object.put("activityId ", quizResponse.getActivityId());
             object.put("formType", formType);
             object.put("referenceId", IDGenerator.getEncodedID());
 
@@ -79,19 +81,53 @@ public class FormPresenterImpl implements FormContract.Presenter {
             e.printStackTrace();
         }
 
-       restServices.submitForm(object, new ResponseListener.BaseListener() {
-           @Override
-           public void onSuccess(BaseResponse response) {
-               //TODO show results
-           }
+        restServices.submitForm(object, new ResponseListener.BaseListener() {
+            @Override
+            public void onSuccess(BaseResponse response) {
+                //TODO show results
+            }
 
-           @Override
-           public void onFailure(String message) {
-               //TODO ask for resubmitting
-           }
-       });
+            @Override
+            public void onFailure(String message) {
+                //TODO ask for resubmitting
+            }
+        });
 
-        view.showResult(totalScore);
+
+        view.showResult(getResults());
+    }
+
+    @Override
+    public int getPositionFromQuesionId(Integer questionId) {
+
+        int arrayPosition = 0;
+        for (int i = 0; i < quizResponse.getQuestions().size(); i++) {
+            if (questionId.equals(quizResponse.getQuestions().get(i).getQuestionId())) {
+                arrayPosition = i;
+                break;
+            }
+
+        }
+        return arrayPosition;
+    }
+
+    @Override
+    public String getActivityDescription() {
+        return quizResponse.getDescription();
+    }
+
+    private String getResults() {
+        String result = "";
+        try {
+            JSONObject jsonObject = new JSONObject(quizResponse.getDecision());
+            if (jsonObject.has("" + totalScore))
+                result = jsonObject.getString("" + totalScore);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     private JSONObject getData() throws JSONException {
@@ -110,8 +146,18 @@ public class FormPresenterImpl implements FormContract.Presenter {
         return quizResponse.getQuestions();
     }
 
+
+
+    @Override
+    public int getFirstQuestionPoistion() {
+        Integer questionId = Integer.valueOf(quizResponse.getQuestionsOrder());
+        return getPositionFromQuesionId(questionId);
+    }
+
     @Override
     public Location getLocation() {
         return quizResponse.getLocation();
     }
+
+
 }

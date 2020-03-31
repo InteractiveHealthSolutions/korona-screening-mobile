@@ -1,4 +1,4 @@
-package com.ihsinformatics.korona.fragments.login;
+package com.ihsinformatics.korona.fragments.location.manual;
 
 import android.app.Activity;
 
@@ -9,10 +9,11 @@ import com.ihsinformatics.korona.model.FailureStatus;
 import com.ihsinformatics.korona.model.geocode.GeocodeResult;
 import com.ihsinformatics.korona.model.question.QuizResponse;
 
+import java.io.InputStream;
 import java.util.List;
 
 
-public interface LoginContract {
+public interface ManualLocationContract {
 
     interface View {
         void showToast(String Message);
@@ -24,6 +25,7 @@ public interface LoginContract {
         void hideLoading();
 
 
+
         void showLocationReasonDialog();
 
         void updateLocation(GeocodeResult geocodeResult);
@@ -32,20 +34,20 @@ public interface LoginContract {
 
         void showLocationLayout();
 
-        void setAdapter(List<Location> response);
-
-        void showNoFormFound();
+        void setAdapter(List<Location> countries, List<Location> states);
     }
 
 
     interface Presenter extends BasePresenter<View> {
         void getUserLocation(Activity activity);
 
+        void createLocationsJson(InputStream inputStream);
+
         void checkPermission(LoginActivity activity);
 
         void requestPermission(LoginActivity activity);
 
-        List<Location> getCountries();
+        String getCountriesJSON();
 
         List<Location> getStates();
 
@@ -59,7 +61,11 @@ public interface LoginContract {
 
         void fetchForm(Location location);
 
-        void submitFormRequestForm(GeocodeResult geocodeResult);
+        void submitFormRequestForm(String country,String state);
+
+        List<Location> getLocationsByParent(Integer parentLocationId);
+
+        boolean isLocationRequestSubmitted();
     }
 
 }

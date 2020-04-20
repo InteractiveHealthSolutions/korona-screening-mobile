@@ -9,6 +9,7 @@ import com.ihsinformatics.korona.common.Utils;
 import com.ihsinformatics.korona.model.BaseResponse;
 import com.ihsinformatics.korona.model.FormAnswer;
 import com.ihsinformatics.korona.model.Language;
+import com.ihsinformatics.korona.model.Question;
 import com.ihsinformatics.korona.model.question.Location;
 import com.ihsinformatics.korona.model.question.Questions;
 import com.ihsinformatics.korona.model.question.QuizResponse;
@@ -55,8 +56,8 @@ public class FormPresenterImpl implements FormContract.Presenter {
 
 
     @Override
-    public void updateScore(FormAnswer forAnswer, Integer score) {
-        formAnswers.add(forAnswer);
+    public void updateScore(Integer score) {
+
         totalScore += score;
     }
 
@@ -116,6 +117,11 @@ public class FormPresenterImpl implements FormContract.Presenter {
         return quizResponse.getDescription();
     }
 
+    @Override
+    public void addAnswer(FormAnswer formAnswer) {
+        formAnswers.add(formAnswer);
+    }
+
     private String getResults() {
         String result = "";
         try {
@@ -143,13 +149,25 @@ public class FormPresenterImpl implements FormContract.Presenter {
     public List<Questions> getQuestions(Intent intent) {
         final String data = intent.getExtras().getString(FORM);
         quizResponse = new Gson().fromJson(data, QuizResponse.class);
-        return quizResponse.getQuestions();
+        List<Questions> unsortedArray = quizResponse.getQuestions();
+        return getSortedArray(unsortedArray);
+    }
+
+    private List<Questions> getSortedArray(List<Questions> unsortedArray) {
+        List<Questions> sortedQuestions = new ArrayList<>();
+        Questions pointerQuestion = unsortedArray.get(getFirstQuestionPosition());
+        sortedQuestions.add(pointerQuestion);
+        while (pointerQuestion.getNextQuestionCriteriaRegex() != null && pointerQuestion.getNextQuestion() != null) {
+            Questions nextQuestion = unsortedArray.get(getPositionFromQuesionId(pointerQuestion.getNextQuestion()));
+            pointerQuestion = nextQuestion;
+            sortedQuestions.add(nextQuestion);
+        }
+        return sortedQuestions;
     }
 
 
-
     @Override
-    public int getFirstQuestionPoistion() {
+    public int getFirstQuestionPosition() {
         Integer questionId = Integer.valueOf(quizResponse.getQuestionsOrder());
         return getPositionFromQuesionId(questionId);
     }

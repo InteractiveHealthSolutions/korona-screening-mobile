@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
         binding.genderDetails.gender.setOnSwitchListener(this);
 
         setAdapter();
-        moveAdapterToPosition(presenter.getFirstQuestionPoistion());
+        //moveAdapterToPosition(presenter.getFirstQuestionPosition());
         showActivityDialog();
     }
 
@@ -108,19 +108,22 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
     public void onOptionClicked(final Questions question, final Option option) {
 
         if (question.getCorrectOptionId().equals(option.getElementId())) {
-            presenter.updateScore(new FormAnswer(question.getUuid(), option.getShortName()), question.getQuestionScore());
+            presenter.updateScore(question.getQuestionScore());
         }
+
+        presenter.addAnswer(new FormAnswer(question.getUuid(), option.getShortName()));
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //int position = binding.quizPager.getCurrentItem();
+                int position = binding.quizPager.getCurrentItem();
 
                 if (question.getNextQuestionCriteriaRegex() != null
                         && option.getDescription().matches(question.getNextQuestionCriteriaRegex())
                         && question.getNextQuestion() != null) {
 
-                    moveAdapterToPosition(presenter.getPositionFromQuesionId(question.getNextQuestion()));
+                    position = position + 1;
+                    moveAdapterToPosition(position);
 
                 } else {
                     presenter.sendResult();
@@ -168,12 +171,12 @@ public class MainActivity extends BaseActivity implements FormContract.View, Ada
     public void onClick(View view) {
         if (view.equals(binding.genderDetails.next)) {
             if (isValid()) {
-                presenter.updateScore(new FormAnswer("age", binding.genderDetails.age.getText().toString()), 0);
-                presenter.updateScore(new FormAnswer("gender", gender), 0);
+                presenter.addAnswer(new FormAnswer("age", binding.genderDetails.age.getText().toString()));
+                presenter.addAnswer(new FormAnswer("gender", gender));
                 binding.genderDetails.root.setVisibility(View.GONE);
                 binding.quizPager.setVisibility(View.VISIBLE);
                 binding.quizPager.requestFocus();
-                Utils.hideKeyboardFrom(this,binding.quizPager);
+                Utils.hideKeyboardFrom(this, binding.quizPager);
             }
         }
     }

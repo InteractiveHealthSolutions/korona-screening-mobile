@@ -23,14 +23,16 @@ public interface FormContract {
     public interface Presenter extends BasePresenter<View> {
         List<Questions> getQuestions(Intent intent);
         Location getLocation();
-        int getFirstQuestionPoistion();
+        int getFirstQuestionPosition();
 
-        void updateScore(FormAnswer answer,Integer score);
+        void updateScore(Integer score);
 
         void sendResult();
 
         int getPositionFromQuesionId(Integer nextQuestion);
 
         String getActivityDescription();
+
+        void addAnswer(FormAnswer formAnswer);
     }
 }

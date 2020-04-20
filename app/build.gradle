@@ -8,8 +8,8 @@ android {
         applicationId "com.ihsinformatics.korona"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -19,7 +19,7 @@ android {
             buildConfigField "String", "PASSWORD", '"admin123"'
         }
         release {
-            buildConfigField "String", "SERVER_URL", '"http://ks.ihsinformatics.com/korona-screening/api/"'
+            buildConfigField "String", "SERVER_URL", '"https://ks.ihsinformatics.com/korona-screening/api/"'
             buildConfigField "String", "USER_NAME", '"admin"'
             buildConfigField "String", "PASSWORD", '"AYmLLHS*w?KV"'
             minifyEnabled false

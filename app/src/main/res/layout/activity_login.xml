@@ -7,6 +7,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
+        <androidx.fragment.app.FragmentContainerView android:name="com.ihsinformatics.korona.fragments.PartnersFragment"
+            android:id="@+id/partners_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:layout="@layout/fragment_partners"
+            />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,12 +28,12 @@
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="120dp"
                 android:src="@drawable/ic_main_logo"
                 app:layout_constraintBottom_toTopOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/header" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline1"
@@ -107,13 +117,47 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView4" />
 
+            <RelativeLayout
+                android:id="@+id/header"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ic_ihs_logo" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/manual_location_other"
+                    fontPath="fonts/Monserrat-Bold.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:onClick="onPartnersButtonClicked"
+
+                    android:text="Our Partners"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_6ssp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/colorAccent"
+                    app:cornerRadius="20dp"
+                    />
+            </RelativeLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
         <include
             android:id="@+id/loader"
-            layout="@layout/layout_loading"
-             />
+            layout="@layout/layout_loading" />
 
     </FrameLayout>
 </layout>

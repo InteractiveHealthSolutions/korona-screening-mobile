@@ -245,6 +245,9 @@ public class LoginActivity extends FragmentActivity implements LoginContract.Vie
         presenter.fetchForm(selectedLocation);
     }
 
+    public void onPartnersButtonClicked(View view) {
+    }
+
 
     /*    @Override
         public void onClick(View view) {

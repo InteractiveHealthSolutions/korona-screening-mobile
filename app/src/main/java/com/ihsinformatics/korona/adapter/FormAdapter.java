@@ -54,15 +54,15 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.QuizViewHolder
         holder.state.setText(location.getLocationName());
         holder.country.setText(location.getCountry());
 
-        if (holder.quizLayout.getChildCount() == 0) {
-            if (RADIO_GROUP.name().equals(question.getQuestionView())) {
-                OptionWidget quizOptionWidget = new OptionWidget(context, question, optionClickedListener);
-                holder.quizLayout.addView(quizOptionWidget.getView());
-            } else if (TEXT_BOX.name().equals(question.getQuestionView())) {
-                EditTextWidget editTextWidget = new EditTextWidget(context, question, optionClickedListener);
-                holder.quizLayout.addView(editTextWidget.build());
-            }
+        holder.quizLayout.removeAllViews();
+        if (RADIO_GROUP.name().equals(question.getQuestionView())) {
+            OptionWidget quizOptionWidget = new OptionWidget(context, question, optionClickedListener);
+            holder.quizLayout.addView(quizOptionWidget.getView());
+        } else if (TEXT_BOX.name().equals(question.getQuestionView())) {
+            EditTextWidget editTextWidget = new EditTextWidget(context, question, optionClickedListener);
+            holder.quizLayout.addView(editTextWidget.build());
         }
+
     }
 
     @Override

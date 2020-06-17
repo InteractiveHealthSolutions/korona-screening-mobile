@@ -6,6 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         >
         <ImageView
             android:layout_width="match_parent"
@@ -17,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:focusable="true">
 
             <include
                 android:id="@+id/gender_details"
@@ -26,12 +28,13 @@
 
 
 
+
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/quiz_pager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-
                 android:layout_weight="6"
+
                 tools:layout="@layout/item_quiz_questions" />
 
         </LinearLayout>

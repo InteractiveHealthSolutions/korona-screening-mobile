@@ -1,9 +1,8 @@
 package com.ihsinformatics.korona.fragments.form;
 
-import android.content.Intent;
-
 import com.ihsinformatics.korona.common.BasePresenter;
 import com.ihsinformatics.korona.model.FormAnswer;
+import com.ihsinformatics.korona.model.form.FormTypeResponse;
 import com.ihsinformatics.korona.model.question.Location;
 import com.ihsinformatics.korona.model.question.Questions;
 
@@ -13,7 +12,7 @@ public interface FormContract {
 
     public interface View {
 
-        void showResult(String result);
+        void showResult(String result, Location location);
 
         String getStringResource(int resId);
 
@@ -21,7 +20,7 @@ public interface FormContract {
     }
 
     public interface Presenter extends BasePresenter<View> {
-        List<Questions> getQuestions(Intent intent);
+        List<Questions> getQuestions(String metadata);
         Location getLocation();
         int getFirstQuestionPosition();
 
@@ -34,5 +33,7 @@ public interface FormContract {
         String getActivityDescription();
 
         void addAnswer(FormAnswer formAnswer);
+
+
     }
 }

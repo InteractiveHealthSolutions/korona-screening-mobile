@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="@dimen/_50sdp"
+    app:cardCornerRadius="@dimen/_10sdp"
     app:cardUseCompatPadding="true"
     app:contentPadding="@dimen/_10sdp">
 
     <RelativeLayout
+        android:id="@+id/parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -19,18 +20,39 @@
             android:layout_alignParentLeft="true"
             />
 
-        <TextView
-            android:id="@+id/name"
+        <LinearLayout
+            android:id="@+id/layout_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_toRightOf="@+id/logo"
             android:text="Indus Hospital"
             android:gravity="center"
+            android:orientation="vertical"
             android:layout_centerVertical="true"
             android:textStyle="bold"
             android:textSize="@dimen/_12ssp"
-            />
+            >
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Indus Hospital"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/logo"
+                android:text="http://abc.this.com"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/_10ssp" />
+        </LinearLayout>
 
 
     </RelativeLayout>

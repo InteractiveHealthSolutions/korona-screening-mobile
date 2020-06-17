@@ -3,6 +3,8 @@ package com.ihsinformatics.korona.db;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ihsinformatics.korona.db.entities.Category;
+import com.ihsinformatics.korona.model.form.FormTypeResponse;
+import com.ihsinformatics.korona.model.question.QuizResponse;
 import com.ihsinformatics.korona.model.results.AttributeType;
 
 
@@ -53,6 +55,32 @@ public class Converters {
 
 
 */
+
+
+    public static String fromFormTypeList(List<QuizResponse> formTypeResponse) {
+        if (formTypeResponse == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<QuizResponse>>() {
+        }.getType();
+        String json = gson.toJson(formTypeResponse, type);
+        return json;
+    }
+
+
+    public static List<QuizResponse> toFormTypeList(String formType) {
+        if (formType == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<QuizResponse>>() {
+        }.getType();
+        List<QuizResponse> formTypeResponse = gson.fromJson(formType, type);
+        return formTypeResponse;
+    }
+  
+  
 
 
     @TypeConverter

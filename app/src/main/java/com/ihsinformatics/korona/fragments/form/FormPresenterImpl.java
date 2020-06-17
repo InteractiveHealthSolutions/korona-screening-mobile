@@ -1,15 +1,13 @@
 package com.ihsinformatics.korona.fragments.form;
 
 
-import android.content.Intent;
-
 import com.google.gson.Gson;
 import com.ihsinformatics.korona.common.IDGenerator;
 import com.ihsinformatics.korona.common.Utils;
 import com.ihsinformatics.korona.model.BaseResponse;
 import com.ihsinformatics.korona.model.FormAnswer;
 import com.ihsinformatics.korona.model.Language;
-import com.ihsinformatics.korona.model.Question;
+import com.ihsinformatics.korona.model.form.FormTypeResponse;
 import com.ihsinformatics.korona.model.question.Location;
 import com.ihsinformatics.korona.model.question.Questions;
 import com.ihsinformatics.korona.model.question.QuizResponse;
@@ -21,8 +19,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.ihsinformatics.korona.activities.LoginActivity.FORM;
 
 public class FormPresenterImpl implements FormContract.Presenter {
 
@@ -95,7 +91,7 @@ public class FormPresenterImpl implements FormContract.Presenter {
         });
 
 
-        view.showResult(getResults());
+        view.showResult(getResults(),quizResponse.getLocation());
     }
 
     @Override
@@ -122,6 +118,8 @@ public class FormPresenterImpl implements FormContract.Presenter {
         formAnswers.add(formAnswer);
     }
 
+
+
     private String getResults() {
         String result = "";
         try {
@@ -146,9 +144,8 @@ public class FormPresenterImpl implements FormContract.Presenter {
 
 
     @Override
-    public List<Questions> getQuestions(Intent intent) {
-        final String data = intent.getExtras().getString(FORM);
-        quizResponse = new Gson().fromJson(data, QuizResponse.class);
+    public List<Questions> getQuestions(String metadata) {
+        quizResponse = new Gson().fromJson(metadata, QuizResponse.class);
         List<Questions> unsortedArray = quizResponse.getQuestions();
         return getSortedArray(unsortedArray);
     }

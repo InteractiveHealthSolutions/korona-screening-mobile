@@ -2,8 +2,10 @@ package com.ihsinformatics.korona.network;
 
 import com.ihsinformatics.korona.db.entities.Location;
 import com.ihsinformatics.korona.model.BaseResponse;
+import com.ihsinformatics.korona.model.form.FormTypeResponse;
 import com.ihsinformatics.korona.model.geocode.GeocodeResult;
 import com.ihsinformatics.korona.model.geocode.ReverseGeocodeResult;
+import com.ihsinformatics.korona.model.partners.BasePartners;
 import com.ihsinformatics.korona.model.question.QuizResponse;
 
 import java.util.List;
@@ -30,5 +32,16 @@ public interface ResponseListener {
         public void onSuccess(QuizResponse response);
         public void onFailure(String message);
         public void responseCode(int code);
+    }
+
+    public interface FetchFormTypeListener {
+        public void onSuccess(List<QuizResponse> response);
+        public void onFailure(String message);
+        public void responseCode(int code);
+    }
+
+    public interface PartnerListener {
+        public void onSuccess(List<BasePartners> response);
+        public void onFailure(String message);
     }
 }

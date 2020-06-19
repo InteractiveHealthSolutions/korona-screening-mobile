@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/home_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/activitiesFragment">
+    <fragment
+        android:id="@+id/formFragment"
+        android:name="com.ihsinformatics.korona.fragments.form.FormFragment"
+        android:label="FormFragment" >
 
+        <argument
+            android:name="formtYpe"
+            app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="com.ihsinformatics.korona.fragments.ActivitiesFragment"
+        android:label="fragment_activities"
+        tools:layout="@layout/fragment_activities" >
+        <action
+            android:id="@+id/action_activitiesFragment_to_formFragment4"
+            app:destination="@id/formFragment"
+          
+            />
+
+        <argument
+            android:name="formdata"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_activitiesFragment_to_partnersFragment"
+            app:destination="@id/partnersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/partnersFragment"
+        android:name="com.ihsinformatics.korona.fragments.PartnersFragment"
+        android:label="PartnersFragment" />
 </navigation>

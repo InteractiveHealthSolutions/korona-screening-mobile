@@ -9,7 +9,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
+        android:background="@color/colorPrimaryDark"
         android:gravity="center"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -18,7 +18,7 @@
             style="@style/Base.TextAppearance.AppCompat.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"
+            android:src="@drawable/logo_main"
             android:textAllCaps="true"
             android:textColor="@color/white" />
     </androidx.appcompat.widget.Toolbar>

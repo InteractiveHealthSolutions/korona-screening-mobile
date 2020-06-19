@@ -4,7 +4,9 @@ import android.location.Location;
 
 import com.ihsinformatics.korona.BuildConfig;
 import com.ihsinformatics.korona.model.BaseResponse;
+import com.ihsinformatics.korona.model.form.FormTypeResponse;
 import com.ihsinformatics.korona.model.geocode.ReverseGeocodeResult;
+import com.ihsinformatics.korona.model.partners.BasePartners;
 import com.ihsinformatics.korona.model.question.QuizResponse;
 
 import org.json.JSONObject;
@@ -75,6 +77,29 @@ public class RestServices {
         });
     }
 
+    public void getPartners(final ResponseListener.PartnerListener listener) {
+        apiService.getPartners(authtoken).enqueue(new Callback<List<BasePartners>>() {
+            @Override
+            public void onResponse(Call<List<BasePartners>> call, Response<List<BasePartners>> response) {
+                if (response != null) {
+                    if (response.isSuccessful() && response.body() != null)
+                        listener.onSuccess(response.body());
+                    else {
+                        listener.onFailure(getErrorMessage(response.code()));
+                    }
+                } else {
+                    listener.onFailure("No Response from server");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<BasePartners>> call, Throwable t) {
+                listener.onFailure(getErrorMessage(t));
+            }
+        });
+    }
+
+
     public void fetchForm(Integer locationId, final ResponseListener.FetchFormListener listener) {
         apiService.fetchForm(authtoken, locationId).enqueue(new Callback<QuizResponse>() {
             @Override
@@ -96,8 +121,83 @@ public class RestServices {
                 listener.onFailure(getErrorMessage(t));
             }
         });
+    }
+    public void fetchActivitiesByName(String name, final ResponseListener.FetchFormTypeListener listener) {
+
+        apiService.fetchActivitiesByName(authtoken, name).enqueue(new Callback<List<QuizResponse>>() {
+            @Override
+            public void onResponse(Call<List<QuizResponse>> call, Response<List<QuizResponse>> response) {
+                if (response != null) {
+                    if (response.isSuccessful() && response.body() != null)
+                        listener.onSuccess(response.body());
+                    else {
+                        listener.onFailure(getErrorMessage(response.code()));
+                        listener.responseCode(response.code());
+                    }
+                } else {
+                    listener.onFailure("No Response from server");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<QuizResponse>> call, Throwable t) {
+
+            }
+        });
+    }
+
+/*
+    public void fetchFormType(Integer locationId, final ResponseListener.FetchFormTypeListener listener) {
+
+            apiService.fetchFormType(authtoken, locationId).enqueue(new Callback<List<FormTypeResponse>>() {
+                @Override
+                public void onResponse(Call<List<FormTypeResponse>> call, Response<List<FormTypeResponse>> response) {
+                    if (response != null) {
+                        if (response.isSuccessful() && response.body() != null)
+                            listener.onSuccess(response.body());
+                        else {
+                            listener.onFailure(getErrorMessage(response.code()));
+                            listener.responseCode(response.code());
+                        }
+                    } else {
+                        listener.onFailure("No Response from server");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<FormTypeResponse>> call, Throwable t) {
+                    listener.onFailure(getErrorMessage(t));
+                }
+            });
+
+
+
+*/
+/*        apiService.fetchForm(authtoken, locationId).enqueue(new Callback<QuizResponse>() {
+            @Override
+            public void onResponse(Call<QuizResponse> call, Response<QuizResponse> response) {
+                if (response != null) {
+                    if (response.isSuccessful() && response.body() != null)
+                        listener.onSuccess(response.body());
+                    else {
+                        listener.onFailure(getErrorMessage(response.code()));
+                        listener.responseCode(response.code());
+                    }
+                } else {
+                    listener.onFailure("No Response from server");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QuizResponse> call, Throwable t) {
+                listener.onFailure(getErrorMessage(t));
+            }
+        });*//*
 
     }
+*/
+
+
 
 
     private String getErrorMessage(Throwable t) {

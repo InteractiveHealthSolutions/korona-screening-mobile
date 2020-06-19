@@ -4,6 +4,7 @@ package com.ihsinformatics.korona.model.question;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ihsinformatics.korona.model.form.FormGroup;
 
 public class QuizResponse {
 
@@ -28,6 +29,9 @@ public class QuizResponse {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("formGroup")
+    @Expose
+    private FormGroup formGroup;
     @SerializedName("activityType")
     @Expose
     private ActivityType activityType;
@@ -206,4 +210,11 @@ public class QuizResponse {
         this.totalScore = totalScore;
     }
 
+    public FormGroup getFormGroup() {
+        return formGroup;
+    }
+
+    public void setFormGroup(FormGroup formGroup) {
+        this.formGroup = formGroup;
+    }
 }

@@ -8,181 +8,226 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_main"
         android:orientation="vertical"
-        android:padding="@dimen/padding_large"
         tools:context=".activities.ResultActivity">
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/main_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large">
 
-            <TextView
-                android:id="@+id/state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Result"
-                android:textColor="@color/white"
-                android:textSize="33sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_ihs_logo" />
-
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/white" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp">
-
-            <ImageView
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_gravity="center"
-                android:src="@drawable/circular_shape_white" />
-
-            <ImageView
-                android:id="@+id/score"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:layout_gravity="center"
-                android:gravity="center|center_vertical"
-                android:src="@drawable/ic_result"
-                />
-        </FrameLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="@dimen/_12sdp"
-
-            >
-
-            <TextView
-                android:id="@+id/status"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:visibility="gone"
-                android:paddingLeft="@dimen/_10sdp"
-                android:paddingTop="@dimen/_4sdp"
-                android:paddingRight="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_4sdp"
-                android:text="Low probability of COVID-19"
-                android:textStyle="bold" />
-
-        </androidx.cardview.widget.CardView>
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
+                <TextView
+                    android:id="@+id/state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_12sdp">
+                    android:text="Result"
+                    android:textColor="@color/white"
+                    android:textSize="33sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/result_details"
-                        android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_ihs_logo" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/white" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/circular_shape_white" />
+
+                <ImageView
+                    android:id="@+id/score"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="center|center_vertical"
+                    android:src="@drawable/ic_result" />
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_12sdp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+
+                >
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_4sdp"
+                    android:text="Low probability of COVID-19"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </androidx.cardview.widget.CardView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                       android:padding="@dimen/_20sdp"
-                        android:gravity="center"
-                        android:text="Some Details about Corona Virus"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="@dimen/text_size_large" />
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp">
 
-                </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/result_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="@dimen/_20sdp"
+                            android:text="Some Details about Corona Virus"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/text_size_large" />
 
-                <LinearLayout
-                    android:id="@+id/layout_contacts"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/_14sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/instruction"
-                    fontPath="fonts/Monserrat-Bold.otf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Back to Home"
-                    app:icon="@drawable/ic_next"
-                    app:iconSize="@dimen/_12sdp"
-                    app:iconGravity="textStart"
-                    android:layout_marginTop="@dimen/_14sdp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/colorAccent"
-                    app:cornerRadius="20dp"
- />
-
-
-                <include
-                    android:id="@+id/precaution"
-                    android:visibility="gone"
-                    layout="@layout/layout_precaution" />
-
-                <LinearLayout
-                    android:id="@+id/layout_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
-                    android:orientation="vertical" />
-                <LinearLayout
-                    android:id="@+id/layout_contact_root"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:orientation="vertical">
-
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/layout_contacts"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_14sdp"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:text="@string/other_contacts"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/next"
+                        fontPath="fonts/Monserrat-Bold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:text="Next"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_8sdp" />
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        android:onClick="onNextButtonClicked"
+                        app:backgroundTint="@color/colorAccent"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_next"
+                        app:iconGravity="textEnd"
+                        app:iconSize="@dimen/_12sdp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/instruction"
+                        fontPath="fonts/Monserrat-Bold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:text="Back to Home"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/colorAccent"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_next"
+                        app:iconGravity="textStart"
+                        app:iconSize="@dimen/_12sdp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/partners"
+                        fontPath="fonts/Monserrat-Bold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:text="View our Global Partners"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/colorAccent"
+                        app:cornerRadius="20dp"
+                        android:onClick="onPartnersButtonClicked"
+                        app:iconGravity="textStart"
+                        app:iconSize="@dimen/_12sdp" />
 
 
+                    <include
+                        android:id="@+id/precaution"
+                        layout="@layout/layout_precaution"
+                        android:visibility="gone" />
 
+                    <LinearLayout
+                        android:id="@+id/layout_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_contact_root"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="@string/other_contacts"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_8sdp" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </ScrollView>
 
-        </ScrollView>
+        </LinearLayout>
+        <fragment
+            android:name="com.ihsinformatics.korona.fragments.PartnersFragment"
+            android:id="@+id/partners_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_partners"
+            />
 
 
     </LinearLayout>

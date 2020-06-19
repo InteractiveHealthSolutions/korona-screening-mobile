@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    tools:context=".activities.MentalHealthFlyer">
+
+    <RelativeLayout
+
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        app:layout_constraintBottom_toTopOf="@+id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_ihs_logo"
+            android:layout_alignParentRight="true"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_to_result"
+            fontPath="fonts/Monserrat-Bold.otf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Back to Results"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8ssp"
+            android:textStyle="bold"
+            android:onClick="onBackButtonClicked"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="20dp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/header"
+        android:paddingTop="@dimen/_20sdp"
+        android:src="@drawable/flyer" />
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_14sdp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/call"
+            fontPath="fonts/Monserrat-Bold.otf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCallButtonClicked"
+            android:text="Call Now"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/ic_call_simple"
+            app:iconTint="@color/white"
+            app:iconGravity="textStart"
+            app:iconSize="@dimen/_12sdp" />
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/home"
+            fontPath="fonts/Monserrat-Bold.otf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:onClick="onHomeButtonClicked"
+            android:text="Back to Home"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/ic_next"
+            app:iconGravity="textEnd"
+            app:iconSize="@dimen/_12sdp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

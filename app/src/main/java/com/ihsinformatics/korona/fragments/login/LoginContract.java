@@ -35,6 +35,8 @@ public interface LoginContract {
         void setAdapter(List<Location> response);
 
         void showNoFormFound();
+
+        void startTabbedActivity(List<QuizResponse> response);
     }
 
 
@@ -60,6 +62,8 @@ public interface LoginContract {
         void fetchForm(Location location);
 
         void submitFormRequestForm(GeocodeResult geocodeResult);
+
+        void fetchFormTypes(Location selectedLocation);
     }
 
 }

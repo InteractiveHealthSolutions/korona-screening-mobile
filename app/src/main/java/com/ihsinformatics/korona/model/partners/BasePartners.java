@@ -1,42 +1,103 @@
 package com.ihsinformatics.korona.model.partners;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class BasePartners {
 
-    private String name;
-    private String imageUrl;
-    private String description;
+    @SerializedName("uuid")
+    @Expose
+    private String uuid;
+    @SerializedName("isVoided")
+    @Expose
+    private Boolean isVoided;
+    @SerializedName("dateCreated")
+    @Expose
+    private String dateCreated;
+    @SerializedName("reasonVoided")
+    @Expose
+    private Object reasonVoided;
+    @SerializedName("partnerId")
+    @Expose
+    private Integer partnerId;
+    @SerializedName("partnerName")
+    @Expose
+    private String partnerName;
+    @SerializedName("shortName")
+    @Expose
+    private String shortName;
+    @SerializedName("logoUrl")
+    @Expose
+    private String logoUrl;
+
+    @SerializedName("website")
+    @Expose
     private String url;
 
-    public BasePartners(String name, String imageUrl, String description, String url) {
-        this.name = name;
-        this.imageUrl = imageUrl;
-        this.description = description;
-        this.url = url;
+    public String getUuid() {
+        return uuid;
     }
 
-    public String getName() {
-        return name;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Boolean getIsVoided() {
+        return isVoided;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public void setIsVoided(Boolean isVoided) {
+        this.isVoided = isVoided;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public String getDateCreated() {
+        return dateCreated;
     }
 
-    public String getDescription() {
-        return description;
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Object getReasonVoided() {
+        return reasonVoided;
     }
+
+    public void setReasonVoided(Object reasonVoided) {
+        this.reasonVoided = reasonVoided;
+    }
+
+    public Integer getPartnerId() {
+        return partnerId;
+    }
+
+    public void setPartnerId(Integer partnerId) {
+        this.partnerId = partnerId;
+    }
+
+    public String getPartnerName() {
+        return partnerName;
+    }
+
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
+
 
     public String getUrl() {
         return url;

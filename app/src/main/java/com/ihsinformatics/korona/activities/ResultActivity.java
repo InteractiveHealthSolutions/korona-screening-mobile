@@ -1,8 +1,10 @@
 package com.ihsinformatics.korona.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.ihsinformatics.korona.App;
 import com.ihsinformatics.korona.R;
 import com.ihsinformatics.korona.databinding.ActivityResultBinding;
@@ -25,6 +28,7 @@ import javax.inject.Inject;
 
 public class ResultActivity extends BaseActivity implements ResultContract.View {
 
+    public static final String SHOULD_GO_BACK = "shouldGoBack";
     ActivityResultBinding binding;
 
     @Inject
@@ -37,10 +41,35 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_result);
         presenter.takeView(this);
         String result = getIntent().getStringExtra("result");
+        String country = getIntent().getStringExtra("location");
+        if (country.equalsIgnoreCase("pakistan")) {
+            binding.next.setVisibility(View.VISIBLE);
+            binding.instruction.setVisibility(View.GONE);
+            //showMentalHealthDialog();
+        }
         setResultDetail(result);
         presenter.getPhoneNumbers(result);
         binding.instruction.setOnClickListener(new InstructionListener());
     }
+
+/*    private void showMentalHealthDialog() {
+        View flyerView = getLayoutInflater().inflate(R.layout.layout_mental_health_flyer, null);
+
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(this)
+                .setView(flyerView)
+                .setCancelable(false)
+                .create();
+
+
+        flyerView.findViewById(R.id.cancel_action).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+    }*/
 
     @Override
     public void showToast(String message) {
@@ -124,6 +153,56 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
         binding.layoutDetails.setVisibility(View.VISIBLE);
     }
 
+    public void onPartnersButtonClicked(View view) {
+        binding.mainLayout.setVisibility(View.GONE);
+    }
+
+
+    public void hidePartners() {
+        binding.mainLayout.setVisibility(View.VISIBLE);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(binding.mainLayout.getVisibility()  == View.VISIBLE) {
+           showBackDialog();
+        }else {
+            hidePartners();
+        }
+    }
+
+    private void showBackDialog() {
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(this)
+                .setTitle("")
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(true)
+                .setIcon(R.drawable.ic_info)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        goHome();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .create();
+
+        alertDialog.show();
+    }
+
+    public void onNextButtonClicked(View view) {
+
+        Intent intent = new Intent(ResultActivity.this, MentalHealthFlyer.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(SHOULD_GO_BACK,true);
+        startActivity(intent);
+
+    }
 
     private class CallListener implements View.OnClickListener {
         @Override
@@ -152,11 +231,15 @@ public class ResultActivity extends BaseActivity implements ResultContract.View 
         @Override
         public void onClick(View view) {
             //  startActivity(new Intent(ResultActivity.this, InstructionActivity.class));
-            Intent intent = new Intent(ResultActivity.this, LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+            goHome();
         }
+    }
+
+    private void goHome() {
+        Intent intent = new Intent(ResultActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }

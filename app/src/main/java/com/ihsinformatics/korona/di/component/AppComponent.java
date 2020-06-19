@@ -11,6 +11,8 @@ import com.ihsinformatics.korona.di.module.DatabaseModule;
 import com.ihsinformatics.korona.di.module.FormModule;
 import com.ihsinformatics.korona.di.module.NetworkModule;
 import com.ihsinformatics.korona.di.module.PresenterModule;
+import com.ihsinformatics.korona.fragments.PartnersFragment;
+import com.ihsinformatics.korona.fragments.form.FormFragment;
 import com.ihsinformatics.korona.fragments.location.automatic.DetectLocationFragment;
 import com.ihsinformatics.korona.fragments.location.manual.ManualLocationFragment;
 
@@ -33,4 +35,8 @@ public interface AppComponent {
     void inject(ManualLocationFragment manualLocationFragment);
 
     void inject(DetectLocationFragment detectLocationFragment);
+
+    void inject(PartnersFragment partnersFragment);
+
+    void inject(FormFragment formFragment);
 }

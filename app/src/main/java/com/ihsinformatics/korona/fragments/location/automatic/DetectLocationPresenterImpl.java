@@ -250,22 +250,7 @@ public class DetectLocationPresenterImpl implements DetectLocationContract.Prese
 
     @Override
     public void fetchForm(com.ihsinformatics.korona.db.entities.Location location) {
-        restServices.fetchForm(location.getLocationId(), new ResponseListener.FetchFormListener() {
-            @Override
-            public void onSuccess(QuizResponse response) {
-                view.startMainActivity(response);
-            }
 
-            @Override
-            public void onFailure(String message) {
-                view.toggleRefresh(View.VISIBLE, FailureStatus.FETCHING_FORM);
-            }
-
-            @Override
-            public void responseCode(int code) {
-
-            }
-        });
     }
 
     @Override

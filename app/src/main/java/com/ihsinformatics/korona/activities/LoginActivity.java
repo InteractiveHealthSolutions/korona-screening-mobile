@@ -2,14 +2,9 @@ package com.ihsinformatics.korona.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -24,11 +19,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.github.ybq.android.spinkit.style.MultiplePulse;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.ihsinformatics.korona.App;
 import com.ihsinformatics.korona.R;
 import com.ihsinformatics.korona.databinding.ActivityLoginBinding;
+import com.ihsinformatics.korona.db.Converters;
 import com.ihsinformatics.korona.db.entities.Location;
 import com.ihsinformatics.korona.fragments.ConsentFragment;
 import com.ihsinformatics.korona.fragments.location.automatic.DetectLocationFragment;
@@ -48,6 +43,7 @@ import static com.ihsinformatics.korona.fragments.login.LoginPresenterImpl.REQUE
 public class LoginActivity extends FragmentActivity implements LoginContract.View, DialogInterface.OnClickListener, View.OnClickListener {
 
     public static final String FORM = "form";
+    public  static final String FORM_TYPE = "formtYpe";
     @Inject
     LoginContract.Presenter presenter;
 
@@ -102,6 +98,14 @@ public class LoginActivity extends FragmentActivity implements LoginContract.Vie
     public void startMainActivity(QuizResponse response) {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra(FORM, new Gson().toJson(response));
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void startTabbedActivity(List<QuizResponse> response) {
+        Intent intent = new Intent(LoginActivity.this, TabbedActivity.class);
+        intent.putExtra(FORM_TYPE, Converters.fromFormTypeList(response));
         startActivity(intent);
         finish();
     }
@@ -242,36 +246,51 @@ public class LoginActivity extends FragmentActivity implements LoginContract.Vie
     }
 
     public void fetchForm() {
-        presenter.fetchForm(selectedLocation);
+        //presenter.fetchForm(selectedLocation);
+        presenter.fetchFormTypes(selectedLocation);
     }
 
     public void onPartnersButtonClicked(View view) {
+        binding.mainLayout.setVisibility(View.GONE);
+    }
+
+    public void hidePartners() {
+        binding.mainLayout.setVisibility(View.VISIBLE);
     }
 
 
-    /*    @Override
-        public void onClick(View view) {
-            if (view.equals(binding.refresh)) {
-                if (FailureStatus.FETCHING_LOCATION.equals(failureStatus))
-                    presenter.syncLocations();
-                if (FailureStatus.FETCHING_FORM.equals(failureStatus))
-                    presenter.fetchForm((Location) binding.state.spinner.getSelectedItem());
-                toggleRefresh(View.GONE, FailureStatus.NONE);
-            } else if (view.equals(binding.requestNow)) {
-                presenter.submitFormRequestForm(geocodeResult);
-            }
+    @Override
+    public void onBackPressed() {
+        if(binding.mainLayout.getVisibility()  == View.VISIBLE) {
+            super.onBackPressed();
+        }else {
+            hidePartners();
         }
+    }
 
-        public void selectSpinnerItemByValue(Location value) {
-            for (int position = 0; position < stateAdapter.getCount(); position++) {
-                if (value != null) {
-                    if (stateAdapter.getItem(position).getLocationId() == value.getLocationId()) {
-                        binding.state.spinner.setSelection(position);
-                        return;
-                    }
+    /*    @Override
+            public void onClick(View view) {
+                if (view.equals(binding.refresh)) {
+                    if (FailureStatus.FETCHING_LOCATION.equals(failureStatus))
+                        presenter.syncLocations();
+                    if (FailureStatus.FETCHING_FORM.equals(failureStatus))
+                        presenter.fetchForm((Location) binding.state.spinner.getSelectedItem());
+                    toggleRefresh(View.GONE, FailureStatus.NONE);
+                } else if (view.equals(binding.requestNow)) {
+                    presenter.submitFormRequestForm(geocodeResult);
                 }
             }
-        }*/
+
+            public void selectSpinnerItemByValue(Location value) {
+                for (int position = 0; position < stateAdapter.getCount(); position++) {
+                    if (value != null) {
+                        if (stateAdapter.getItem(position).getLocationId() == value.getLocationId()) {
+                            binding.state.spinner.setSelection(position);
+                            return;
+                        }
+                    }
+                }
+            }*/
     private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
 
 
